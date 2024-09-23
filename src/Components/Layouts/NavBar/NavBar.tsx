@@ -1,11 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../../assets/whiteLogo.webp";
+import logo from "../../../assets/whiteLogo.png";
 import { IoMdCart } from "react-icons/io";
 import CenterAlign from "../../Helper/CenterAlign";
 import { useAppSelector } from "../../../Redux/feathcer/hoocks";
 import { useEffect, useState } from "react";
 import ToggleButton from "../../Ui/ToggleButton";
-import "./style.css"
+import "./style.css";
 const NavBar = () => {
   const count = useAppSelector((state) => state.cartStore);
 
@@ -29,7 +29,9 @@ const NavBar = () => {
         <NavLink to={"/"}>Home</NavLink>
       </li>
       <li>
-        <NavLink end to={"/products"}>Products</NavLink>
+        <NavLink to={"/meeting-rooms"}>
+          Meeting Rooms
+        </NavLink>
       </li>
       <li>
         <NavLink to={"/about-us"}>About Us</NavLink>
@@ -40,6 +42,9 @@ const NavBar = () => {
       <li>
         <NavLink to={"/dashboard"}>Dashboard</NavLink>
       </li>
+      <li>
+        <NavLink to={"/authentication/login"}> Login/Register</NavLink>
+      </li>
     </>
   );
 
@@ -48,7 +53,7 @@ const NavBar = () => {
   const toggleHandler = () => {
     setShowDropDown((prev) => !prev);
   };
-  console.log(showDropDown);
+
   return (
     <>
       {/* for desktop view */}
@@ -57,7 +62,7 @@ const NavBar = () => {
           <div className="flex items-center justify-between lg:pr-5 pt-3">
             <div className="flex items-center lg:gap-x-11">
               <Link to={"/"}>
-                <img src={logo} alt="logo" />
+                <img className="h-[50px]" src={logo} alt="logo" />
               </Link>
 
               <ul className="lg:flex hidden items-center lg:gap-10 text-white">
@@ -65,12 +70,9 @@ const NavBar = () => {
               </ul>
             </div>
 
-            <Link to={"/cart"} className="relative">
-              <IoMdCart className="text-white text-3xl" />{" "}
-              <span className="text-white bg-red-600 rounded-full h-5 w-5 inline-block to-center absolute -top-3 -right-3">
-                {count?.length}
-              </span>
-            </Link>
+            {/* <Link to={"/cart"} className="relative text-white">
+            Login/Register
+            </Link> */}
           </div>
         </CenterAlign>
       </div>
@@ -78,20 +80,17 @@ const NavBar = () => {
 
       <div className="relative z-10 lg:hidden block">
         <div className="flex  items-center justify-between bg-black  px-3 py-2">
-        <div className="flex  items-center">
-          <ToggleButton onClick={toggleHandler} />
-          <img
-            className="w-[100px] h-[30px] object-contain"
-            src={logo}
-            alt=""
-          />
-        </div>
-        <Link to={"/cart"} className="relative">
-          <IoMdCart className="text-white text-3xl" />{" "}
-          <span className="text-white bg-red-600 rounded-full h-5 w-5 inline-block to-center absolute -top-2 -right-2">
-            {count?.length}
-          </span>
-        </Link>
+          <div className="flex  items-center">
+            <ToggleButton onClick={toggleHandler} />
+            <img
+              className="w-[100px] h-[30px] object-contain"
+              src={logo}
+              alt=""
+            />
+          </div>
+          <Link to={"/cart"} className="relative">
+            Login/Register
+          </Link>
         </div>
 
         {/* drop down. */}
