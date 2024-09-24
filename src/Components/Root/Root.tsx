@@ -5,8 +5,25 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AOS from "aos"
 import 'aos/dist/aos.css';
+import { useEffect, useState } from "react";
+import DecodeToken from "../../Utils/decodeToken";
+import { useGetLoggedInUserQuery } from "../../Redux/api/api";
+import { getToken } from "../../Utils/getToken";
 const Root = () => {
   AOS.init();
+
+  
+  const[shouldCall,setShouldCall]=useState(false)
+  // getting login user details, if the user is logged in.
+  const{data,isLoading}=useGetLoggedInUserQuery(undefined,{skip:!shouldCall})
+
+useEffect(()=>{
+if(getToken()){
+  setShouldCall(true)
+}
+},[])
+console.log(data)
+
   return(
     <div className="">
      <div className="sticky top-0 z-50">

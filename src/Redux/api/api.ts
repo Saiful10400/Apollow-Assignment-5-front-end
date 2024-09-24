@@ -1,8 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { getToken } from "../../Utils/getToken";
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/api" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/api",prepareHeaders:(header)=>{
+
+    if(getToken())header.set("Authorization",getToken() as string)
+    
+  
+  }}),
   tagTypes: ["Products","authentication"],
   endpoints: (builder) => {
     return {
@@ -22,19 +28,23 @@ export const baseApi = createApi({
             url: "/auth/login",
             method: "POST",
             body: payload,
+            
           };
         },
       }),
 
-      getAProduct: builder.query({
-        query: (payload) => {
+      getLoggedInUser: builder.query({
+        query: () => {
           return {
-            url: `/product/${payload}`,
+            url: `/auth/getCurrentUser`,
             method: "GET",
+          
           };
         },
-        providesTags: ["Products"],
+        
       }),
+
+
       updateProduct: builder.mutation({
         query: ({ _id, ...rest }) => {
           return {
@@ -71,7 +81,7 @@ export const baseApi = createApi({
 export const {
   useLoginMutation,
   useSignupMutation,
-  useGetAProductQuery,
+  useGetLoggedInUserQuery,
   useCreateABookingMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,
