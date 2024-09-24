@@ -1,4 +1,3 @@
-ls
 import { useNavigate, useParams } from "react-router";
 import "./style.css";
 import logo from "../../../assets/blackLogo.png";
@@ -9,7 +8,13 @@ import { IoCameraSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import imageUpload from "../../../Utils/imageUpload";
 import { toast } from "react-toastify";
-import { useGetLoggedInUserQuery, useLoginMutation, useSignupMutation } from "../../../Redux/api/api";
+import {
+  useGetLoggedInUserQuery,
+  useLoginMutation,
+  useSignupMutation,
+} from "../../../Redux/api/api";
+import { useAppDispatch } from "../../../Redux/feathcer/hoocks";
+import { setUser } from "../../../Redux/feathcer/AuthSlice";
 const Authentication = () => {
   const params = useParams().id;
   const move = useNavigate();
@@ -52,12 +57,19 @@ const Authentication = () => {
     { error: loginError, isLoading: loginLoading, data: loginData },
   ] = useLoginMutation();
 
+  // panitrate current login user api.
+  const [shouldCall, setShouldCall] = useState(false);
+  const { data } = useGetLoggedInUserQuery(undefined, { skip: !shouldCall });
 
-// panitrate current login user api.
-const[shouldCall,setShouldCall]=useState(false)
-const loggedInuserData=useGetLoggedInUserQuery(undefined,{skip:!shouldCall})
+  
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (data?.data) {
+      dispatch(setUser(data?.data));
+      move("/")
+    }
+  }, [data, dispatch]);
 
-console.log(loggedInuserData.data)
   //form submit handle.
   const formSubmitHandle = (e) => {
     e.preventDefault();
@@ -67,10 +79,9 @@ console.log(loggedInuserData.data)
       const email = form.email.value;
       const password = form.password.value;
       login({ email, password }).then((res) => {
-        localStorage.setItem("token",res.data.token)
-        form.reset()
-        setShouldCall(true)
-       
+        localStorage.setItem("token", res.data.token);
+        form.reset();
+        setShouldCall(true);
       });
     } else if (params === "register") {
       if (!profileImage) return;
@@ -89,21 +100,19 @@ console.log(loggedInuserData.data)
 
   // show necessary message.
   useEffect(() => {
-    if (signupData){
-        toast.success(signupData?.message, {
-            position: "top-center",
-          });
-          move("/authentication/login")
+    if (signupData) {
+      toast.success(signupData?.message, {
+        position: "top-center",
+      });
+      move("/authentication/login");
     }
-      
   }, [signupData]);
 
   useEffect(() => {
-    if (loginData){
+    if (loginData) {
       toast.success(loginData.message, {
         position: "top-center",
-      })
-      move("/")
+      });
     }
   }, [loginData]);
 

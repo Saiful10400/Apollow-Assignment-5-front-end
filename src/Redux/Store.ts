@@ -3,6 +3,9 @@ import counterReducer from "./feathcer/counterSlice";
 import { baseApi } from "./api/api";
 import DashboardReducer from "./feathcer/DashboardSlice";
 import cartReducer from "./feathcer/CartSlice";
+import authReducer from "./feathcer/AuthSlice";
+
+
 
 
 const store=configureStore({
@@ -10,6 +13,7 @@ const store=configureStore({
         counterStore:counterReducer,
         cartStore:cartReducer,
         DashbpardStore:DashboardReducer,
+        authStore:authReducer,
         [baseApi.reducerPath]:baseApi.reducer,
         
     },

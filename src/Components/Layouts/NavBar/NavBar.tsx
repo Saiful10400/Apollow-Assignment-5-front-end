@@ -1,27 +1,33 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/whiteLogo.png";
-import { IoMdCart } from "react-icons/io";
 import CenterAlign from "../../Helper/CenterAlign";
 import { useAppSelector } from "../../../Redux/feathcer/hoocks";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ToggleButton from "../../Ui/ToggleButton";
 import "./style.css";
 const NavBar = () => {
-  const count = useAppSelector((state) => state.cartStore);
 
-  useEffect(() => {
-    const handleClose = (event) => {
-      if (count.length !== 0) {
-        event.preventDefault();
-        event.returnValue = "";
-      }
-    };
 
-    window.addEventListener("beforeunload", handleClose);
-    return () => {
-      window.removeEventListener("beforeunload", handleClose);
-    };
-  }, [count]);
+
+  // useEffect(() => {
+  //   const handleClose = (event) => {
+  //     if (count.length !== 0) {
+  //       event.preventDefault();
+  //       event.returnValue = "";
+  //     }
+  //   };
+
+  //   window.addEventListener("beforeunload", handleClose);
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleClose);
+  //   };
+  // }, [count]);
+
+ const data=useAppSelector(state=>state.authStore)
+ console.log(data)
+
+
+
 
   const routes = (
     <>
@@ -70,9 +76,9 @@ const NavBar = () => {
               </ul>
             </div>
 
-            {/* <Link to={"/cart"} className="relative text-white">
-            Login/Register
-            </Link> */}
+            <button>
+              <img src="" alt="" />
+            </button>
           </div>
         </CenterAlign>
       </div>
