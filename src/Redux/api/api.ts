@@ -9,7 +9,7 @@ export const baseApi = createApi({
     
   
   }}),
-  tagTypes: ["Products","authentication"],
+  tagTypes: ["Products","authentication","rooms","slots"],
   endpoints: (builder) => {
     return {
       signup: builder.mutation({
@@ -44,36 +44,75 @@ export const baseApi = createApi({
         
       }),
 
-
-      updateProduct: builder.mutation({
-        query: ({ _id, ...rest }) => {
+      getRooms: builder.query({
+        query: () => {
           return {
-            url: `/product/${_id}`,
+            url: `/rooms`,
+            method: "GET",
+          };
+        },
+        providesTags:["rooms"]
+      }),
+
+      updateRoom: builder.mutation({
+        query: ({_id,...rest}) => {
+          return {
+            url: `/rooms/${_id}`,
             method: "PUT",
             body: rest,
           };
+          
         },
-        invalidatesTags: ["Products"],
+        invalidatesTags:["rooms"]
       }),
-      deleteProduct: builder.mutation({
-        query: ({ _id }) => {
+
+      deleteRoom: builder.mutation({
+        query: ({ id }) => {
           return {
-            url: `/product/${_id}`,
+            url: `/rooms/${id}`,
             method: "DELETE",
           };
         },
-        invalidatesTags: ["Products"],
+        invalidatesTags: ["rooms"],
       }),
-      createABooking: builder.mutation({
-        query: (data) => {
+
+
+
+      getSlot: builder.query({
+        query: () => {
           return {
-            url: `/booking`,
-            method: "POST",
-            body: data,
+            url: `/slots/availability`,
+            method: "GET",
           };
         },
-        invalidatesTags: ["Products"],
+        providesTags:["slots"]
       }),
+
+      updateSlot: builder.mutation({
+        query: ({_id,...rest}) => {
+          return {
+            url: `/slots/${_id}`,
+            method: "PUT",
+            body: rest,
+          };
+        
+        },
+        invalidatesTags:["slots"]
+      }),
+
+      deleteSlot: builder.mutation({
+        query: ({ id }) => {
+          return {
+            url: `/slots/${id}`,
+            method: "DELETE",
+            
+          };
+        },
+        invalidatesTags: ["slots"],
+      }),
+
+
+
     };
   },
 });
@@ -82,7 +121,11 @@ export const {
   useLoginMutation,
   useSignupMutation,
   useGetLoggedInUserQuery,
-  useCreateABookingMutation,
-  useUpdateProductMutation,
-  useDeleteProductMutation,
+  useGetRoomsQuery,
+  useUpdateRoomMutation,
+  useDeleteRoomMutation,
+  useGetSlotQuery,
+  useDeleteSlotMutation,
+  useUpdateSlotMutation
+ 
 } = baseApi;

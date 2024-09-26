@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetLoggedInUserQuery } from "../../Redux/api/api";
 import { getToken } from "../../Utils/getToken";
 import { useAppDispatch } from "../../Redux/feathcer/hoocks";
@@ -22,9 +22,8 @@ const Root = () => {
   useEffect(() => {
     if (getToken()) {
       setShouldCall(true);
-    }
-    else{
-      dispatch(setLoading(false))
+    } else {
+      dispatch(setLoading(false));
     }
   }, [dispatch]);
 

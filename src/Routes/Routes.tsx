@@ -4,9 +4,12 @@ import Home from "../Components/Pages/Home/Home";
 
 import ContactUs from "../Components/Pages/ContactUs/ContactUs";
 import AboutUs from "../Components/Pages/AboutUs/AboutUs";
-import SuccessPayment from "../Components/Layouts/SuccessPayment/SuccessPayment";
 import Rooms from "../Components/Pages/Rooms/Rooms";
 import Authentication from "../Components/Pages/Authentication/Authentication";
+import AdminDashboard from "../Components/Pages/AdminDashboard/AdminDashboard";
+import RoomManage from "../Components/Pages/AdminDashboard/SubPages/Rooms/RoomManage";
+import BookingManage from "../Components/Pages/AdminDashboard/SubPages/Bookings/BookingManage";
+import SlotManage from "../Components/Pages/AdminDashboard/SubPages/Slots/SlotManage";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -34,13 +37,26 @@ const routes = createBrowserRouter([
         path: "/contact-us",
         element: <ContactUs />,
       },
-
-      {
-        path: "/Success-order",
-        element: <SuccessPayment />,
-      },
     ],
   },
+  {
+    path: "/admin/dashboard",
+    element: <AdminDashboard />,
+    children:[
+      {
+        path:"room",
+        element:<RoomManage/>
+      },
+      {
+        path:"booking",
+        element:<BookingManage/>
+      },
+      {
+        path:"slot",
+        element:<SlotManage/>
+      }
+    ]
+  }
 ]);
 
 export default routes;

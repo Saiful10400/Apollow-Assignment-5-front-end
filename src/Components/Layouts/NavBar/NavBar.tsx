@@ -2,13 +2,14 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/whiteLogo.png";
 import CenterAlign from "../../Helper/CenterAlign";
 import { useAppSelector } from "../../../Redux/feathcer/hoocks";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ToggleButton from "../../Ui/ToggleButton";
 import "./style.css";
+import { BiMenu } from "react-icons/bi";
+import { CiLogout } from "react-icons/ci";
+import { RiBookmark3Line } from "react-icons/ri";
+import { BiSolidDashboard } from "react-icons/bi";
 const NavBar = () => {
-
-
-
   // useEffect(() => {
   //   const handleClose = (event) => {
   //     if (count.length !== 0) {
@@ -23,11 +24,7 @@ const NavBar = () => {
   //   };
   // }, [count]);
 
- const data=useAppSelector(state=>state.authStore)
- console.log(data)
-
-
-
+  const { loggedInUser } = useAppSelector((state) => state.authStore);
 
   const routes = (
     <>
@@ -35,9 +32,7 @@ const NavBar = () => {
         <NavLink to={"/"}>Home</NavLink>
       </li>
       <li>
-        <NavLink to={"/meeting-rooms"}>
-          Meeting Rooms
-        </NavLink>
+        <NavLink to={"/meeting-rooms"}>Meeting Rooms</NavLink>
       </li>
       <li>
         <NavLink to={"/about-us"}>About Us</NavLink>
@@ -60,6 +55,19 @@ const NavBar = () => {
     setShowDropDown((prev) => !prev);
   };
 
+  //show dropDown.
+  const [showMenu, setshowMenu] = useState(false);
+
+  useEffect(() => {
+    const listner = () => {
+      setshowMenu(false);
+    };
+    window.addEventListener("click", listner);
+    return () => {
+      window.removeEventListener("click", listner);
+    };
+  }, []);
+
   return (
     <>
       {/* for desktop view */}
@@ -76,9 +84,53 @@ const NavBar = () => {
               </ul>
             </div>
 
-            <button>
-              <img src="" alt="" />
-            </button>
+            {loggedInUser && (
+              <div className="">
+                <button
+                  onClick={(e) =>{
+                    e.stopPropagation()
+                    setshowMenu((prev) => !prev)
+                  }}
+                  className=" px-2 py-1 rounded-full gap-4 border border-white to-center"
+                >
+                  <BiMenu className="text-2xl text-white" />
+                  <div className="w-[40px] overflow-hidden rounded-full h-[40px]">
+                    <img
+                      className="scale-110 object-cover w-full h-full"
+                      src={loggedInUser.img}
+                      alt=""
+                    />
+                  </div>
+                </button>
+
+                {/* drop down. */}
+                <div
+                  className={
+                    showMenu
+                      ? "w-[200px] p-4 bg-gray-700 absolute right-[14%] top-[75%] rounded-lg"
+                      : "hidden"
+                  }
+                >
+                  <ul className="flex flex-col gap-3 text-gray-100">
+                    {loggedInUser.role === "user" ? (
+                      <li className="flex items-center gap-3 text-lg">
+                        <RiBookmark3Line className="text-2xl" />
+                        <Link to={"/"}>My Bookings</Link>
+                      </li>
+                    ) : (
+                      <li className="flex items-center gap-3 text-lg">
+                        <BiSolidDashboard className="text-2xl" />
+                        <Link to={"admin/dashboard/room"}>Dashboard</Link>
+                      </li>
+                    )}
+                    <li className="flex items-center gap-3 text-lg">
+                      <CiLogout className="text-2xl" />
+                      <button>Logout</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            )}
           </div>
         </CenterAlign>
       </div>

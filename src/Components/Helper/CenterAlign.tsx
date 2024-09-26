@@ -4,7 +4,7 @@ interface Tchildren {
   children: ReactNode;
 }
 const CenterAlign = ({ children }: Tchildren) => {
-  return <div className="max-w-[1400px] overflow-hidden mx-auto mb-6">{children}</div>;
+  return <div className="max-w-[1400px]  w-full overflow-hidden mx-auto mb-6">{children}</div>;
 };
 
 export default CenterAlign;
