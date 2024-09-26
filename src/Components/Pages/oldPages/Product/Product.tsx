@@ -24,7 +24,7 @@ const Product = () => {
   const [searchData, setSearchData] = useState(initialValue);
  
   const update = (data) => {
-    console.log(data,":DATa")
+
     setSearchData((prev)=>({...prev,...data }));
     
   };
@@ -53,7 +53,7 @@ const Product = () => {
   // search handle.
   const serArchHandle = (e) => {
     const input = e.target.value;
-    console.log("start:",searchData.serchText)
+
     const queryItems = data?.data?.filter((item) => {
       const name = item.name.toUpperCase();
       const brand = item.brand.toUpperCase();
@@ -210,7 +210,7 @@ const Product = () => {
 
         {queryData?.length === 0 ? (
           <div className="to-center w-full h-[70vh] text-lg mt-4">
-            No Product Available!
+            No Item Available!
           </div>
         ) : (
           <div className="grid grid-cols-1 mt-12 lg:px-2 px-4 lg:grid-cols-5 lg:gap-5 gap-4">

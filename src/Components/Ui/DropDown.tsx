@@ -13,6 +13,7 @@ const DropDown = ({ type, placeholder, altimeValue, valueUpdate, allData,classNa
         id={placeholder}
         className={`w-full focus:outline-none border border-gray-600 py-2 pl-2 rounded-lg text-lg font-medium ${className}`}
       >
+        <option disabled selected hidden>Select Room</option>
         {allData?.map((item) => (
           <option key={item._id} value={item._id}>
             {item.name}

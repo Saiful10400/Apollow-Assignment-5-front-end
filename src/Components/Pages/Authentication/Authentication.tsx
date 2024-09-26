@@ -173,7 +173,7 @@ const Authentication = () => {
             </label>
 
             <input
-              multiple
+              
               onInput={profileImageUploadHandle}
               accept="image/*"
               type="file"

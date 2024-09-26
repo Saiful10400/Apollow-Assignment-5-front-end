@@ -2,17 +2,18 @@
 import Button from '../../../../Ui/Button';
 import Table from '../../../../Layouts/Dashboard/Table';
 import { useGetSlotQuery } from '../../../../../Redux/api/api';
+import CreateSlotModal from './CreateSlotModal';
 
 const SlotManage = () => {
 
 
     const createNewButtonHandle = () => {
-        // document.getElementById("my_modal")?.showModal();
+        document.getElementById("create_slot_modal")?.showModal();
       };
     
       // get all rooms.
       const{data:allSlots,isLoading}=useGetSlotQuery(null)
-     
+
       const dataFormate=[
         {tittle:"Room Name",formate:"text",key:"name"},
         {tittle:"Room No",formate:"number",key:"roomNo"},
@@ -23,7 +24,7 @@ const SlotManage = () => {
       ]
       const nestedProperty=["name","roomNo"]
       const notnested=["date","startTime","endTime"]
-    console.log(allSlots)
+
     return (
         <div className="">
       <div className="flex justify-between items-center">
@@ -32,11 +33,12 @@ const SlotManage = () => {
         <Button
           onClick={createNewButtonHandle}
           className="text-base font-normal"
-          text="Create Room"
+          text="Create Slot"
         />
         {/* <Modal /> */}
       </div>
       <Table nestedProperty={nestedProperty} notnestedProperty={notnested} dataFormate={dataFormate}  isLoading={isLoading} data={allSlots}/>
+      <CreateSlotModal/>
     </div>
     );
 };

@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { getToken } from "../../Utils/getToken";
 
+
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/api",prepareHeaders:(header)=>{
@@ -44,6 +45,9 @@ export const baseApi = createApi({
         
       }),
 
+
+
+
       getRooms: builder.query({
         query: () => {
           return {
@@ -71,6 +75,17 @@ export const baseApi = createApi({
           return {
             url: `/rooms/${id}`,
             method: "DELETE",
+          };
+        },
+        invalidatesTags: ["rooms"],
+      }),
+      createARoom: builder.mutation({
+        query: (payload) => {
+          
+          return {
+            url: `/rooms`,
+            method: "POST",
+            body:payload
           };
         },
         invalidatesTags: ["rooms"],
@@ -105,7 +120,17 @@ export const baseApi = createApi({
           return {
             url: `/slots/${id}`,
             method: "DELETE",
-            
+          };
+        },
+        invalidatesTags: ["slots"],
+      }),
+
+      createAslot: builder.mutation({
+        query: ({payload}) => {
+          return {
+            url: `/slots/${id}`,
+            method: "DELETE",
+            border:payload
           };
         },
         invalidatesTags: ["slots"],
@@ -126,6 +151,8 @@ export const {
   useDeleteRoomMutation,
   useGetSlotQuery,
   useDeleteSlotMutation,
-  useUpdateSlotMutation
+  useUpdateSlotMutation,
+  useCreateARoomMutation,
+  useCreateAslotMutation
  
 } = baseApi;

@@ -23,6 +23,7 @@ const Table = ({
   const route = useHref()?.split("/");
   const routeText = route[route.length - 1];
   const updateHandle = (data) => {
+
     dispatch(setUpdateItem(data));
     if(routeText==="room")document.getElementById("update_modal")?.showModal();
     if(routeText==="slot")document.getElementById("update_modal_slot")?.showModal();
@@ -127,7 +128,7 @@ const Table = ({
       {isLoading && <Loading />}
       {data?.data?.length === 0 && (
         <div className="to-center w-full text-lg mt-4">
-          No Product Available!
+          No Item Available!
         </div>
       )}
       <UpdateModal dataFormate={dataFormate} />

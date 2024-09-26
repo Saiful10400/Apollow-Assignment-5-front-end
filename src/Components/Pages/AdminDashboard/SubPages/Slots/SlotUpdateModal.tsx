@@ -8,8 +8,6 @@ import DropDown from "../../../../Ui/DropDown";
 import InputField from "../../../../Ui/Input";
 import Button from "../../../../Ui/Button";
 
-
-
 //.................//END//...................//
 
 const SlotUpdateModal = () => {
@@ -58,8 +56,6 @@ const SlotUpdateModal = () => {
   // all rooms data.
   const { data: allRooms } = useGetRoomsQuery(undefined);
 
-
-
   return (
     <dialog id="update_modal_slot" className="modal">
       <div className="modal-box relative z-10">
@@ -73,50 +69,51 @@ const SlotUpdateModal = () => {
 
         <form action="" className="flex flex-col gap-4 mt-4">
           <div className="grid grid-cols-2 gap-3">
-          <DropDown
-            className="h-[48px]"
-            altimeValue={formData?.roomId}
-            valueUpdate={(e)=>{
-             const roomNo=allRooms?.data.find(item=>item._id===e.target.value)?.roomNo
-              update({roomId:e.target.value,roomNo})
-            }}
-            allData={allRooms?.data}
-            placeholder="Room Name"
-          />
+            <DropDown
+              className="h-[48px]"
+              altimeValue={formData?.roomId}
+              valueUpdate={(e) => {
+                const roomNo = allRooms?.data.find(
+                  (item) => item._id === e.target.value
+                )?.roomNo;
+                update({ roomId: e.target.value, roomNo });
+              }}
+              allData={allRooms?.data}
+              placeholder="Room Name"
+            />
 
-          <InputField
-            disabled={true}
-            type={"number"}
-            altimeValue={formData?.roomNo}
-            placeholder="Room Number"
-          />
+            <InputField
+              disabled={true}
+              type={"number"}
+              altimeValue={formData?.roomNo}
+              placeholder="Room Number"
+            />
           </div>
           <div className="grid grid-cols-2 gap-3">
-          <InputField
-            disabled={false}
-            type={"time"}
-            altimeValue={formData?.startTime}
-            valueUpdate={(e)=>update({startTime:e.target.value})}
-            placeholder="Start Time"
-          />
-          <InputField
-            disabled={false}
-            type={"time"}
-            altimeValue={formData?.endTime}
-            valueUpdate={(e)=>update({endTime:e.target.value})}
-            placeholder="End Time"
-          />
+            <InputField
+              disabled={false}
+              type={"time"}
+              altimeValue={formData?.startTime}
+              valueUpdate={(e) => update({ startTime: e.target.value })}
+              placeholder="Start Time"
+            />
+            <InputField
+              disabled={false}
+              type={"time"}
+              altimeValue={formData?.endTime}
+              valueUpdate={(e) => update({ endTime: e.target.value })}
+              placeholder="End Time"
+            />
           </div>
 
           <InputField
             disabled={false}
             type={"date"}
             altimeValue={formData?.date}
-            valueUpdate={(e)=>update({date:e.target.value})}
+            valueUpdate={(e) => update({ date: e.target.value })}
             placeholder="Date"
           />
-          <Button text="Update" className="w-full"/>
-          
+          <Button text="Update" className="w-full" />
         </form>
       </div>
     </dialog>
