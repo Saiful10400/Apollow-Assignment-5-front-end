@@ -67,7 +67,7 @@ export const baseApi = createApi({
           };
           
         },
-        invalidatesTags:["rooms"]
+        invalidatesTags:["rooms","slots"]
       }),
 
       deleteRoom: builder.mutation({
@@ -104,11 +104,11 @@ export const baseApi = createApi({
       }),
 
       updateSlot: builder.mutation({
-        query: ({_id,...rest}) => {
+        query: ({slotId,roomId:room,date,startTime,endTime}) => {
           return {
-            url: `/slots/${_id}`,
+            url: `/slots/${slotId}`,
             method: "PUT",
-            body: rest,
+            body: {room,date,startTime,endTime},
           };
         
         },
@@ -126,11 +126,11 @@ export const baseApi = createApi({
       }),
 
       createAslot: builder.mutation({
-        query: ({payload}) => {
+        query: (payload) => {
           return {
-            url: `/slots/${id}`,
-            method: "DELETE",
-            border:payload
+            url: `/slots`,
+            method: "POST",
+            body:payload
           };
         },
         invalidatesTags: ["slots"],

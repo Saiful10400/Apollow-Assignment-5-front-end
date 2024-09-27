@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import InputField from "../../../../Ui/Input";
-import { Button } from "@mui/material";
 import DropDown from "../../../../Ui/DropDown";
 import { useCreateAslotMutation, useGetRoomsQuery } from "../../../../../Redux/api/api";
+import Button from "../../../../Ui/Button";
 
 const CreateSlotModal = () => {
   const inetialValue = {
@@ -23,7 +23,7 @@ const CreateSlotModal = () => {
   const formSubmitHandle = (e) => {
     e.preventDefault();
 
-    createSlot({ ...formData });
+    createSlot(formData);
   };
 
   useEffect(() => {
