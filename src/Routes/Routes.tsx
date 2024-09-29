@@ -10,6 +10,7 @@ import AdminDashboard from "../Components/Pages/AdminDashboard/AdminDashboard";
 import RoomManage from "../Components/Pages/AdminDashboard/SubPages/Rooms/RoomManage";
 import BookingManage from "../Components/Pages/AdminDashboard/SubPages/Bookings/BookingManage";
 import SlotManage from "../Components/Pages/AdminDashboard/SubPages/Slots/SlotManage";
+import SingleRoom from "../Components/Pages/SingleRoom/SingleRoom";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -23,6 +24,10 @@ const routes = createBrowserRouter([
       {
         path: "/meeting-rooms",
         element: <Rooms />,
+      },
+      {
+        path: "/meeting-rooms/:id",
+        element: <SingleRoom />,
       },
       {
         path: "/authentication/:id",

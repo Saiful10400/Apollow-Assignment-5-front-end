@@ -1,16 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { getToken } from "../../Utils/getToken";
 
-
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/api",prepareHeaders:(header)=>{
-
-    if(getToken())header.set("Authorization",getToken() as string)
-    
-  
-  }}),
-  tagTypes: ["Products","authentication","rooms","slots"],
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:8000/api",
+    prepareHeaders: (header) => {
+      if (getToken()) header.set("Authorization", getToken() as string);
+    },
+  }),
+  tagTypes: ["Products", "authentication", "rooms", "slots"],
   endpoints: (builder) => {
     return {
       signup: builder.mutation({
@@ -21,7 +20,6 @@ export const baseApi = createApi({
             body: payload,
           };
         },
-        
       }),
       login: builder.mutation({
         query: (payload) => {
@@ -29,7 +27,6 @@ export const baseApi = createApi({
             url: "/auth/login",
             method: "POST",
             body: payload,
-            
           };
         },
       }),
@@ -39,15 +36,19 @@ export const baseApi = createApi({
           return {
             url: `/auth/getCurrentUser`,
             method: "GET",
-          
           };
         },
-        
       }),
 
-
-
-
+      getAroom: builder.query({
+        query: ({id}) => {
+          return {
+            url: `/rooms/${id}`,
+            method: "GET",
+          };
+        },
+        providesTags: ["rooms"],
+      }),
       getRooms: builder.query({
         query: () => {
           return {
@@ -55,19 +56,18 @@ export const baseApi = createApi({
             method: "GET",
           };
         },
-        providesTags:["rooms"]
+        providesTags: ["rooms"],
       }),
 
       updateRoom: builder.mutation({
-        query: ({_id,...rest}) => {
+        query: ({ _id, ...rest }) => {
           return {
             url: `/rooms/${_id}`,
             method: "PUT",
             body: rest,
           };
-          
         },
-        invalidatesTags:["rooms","slots"]
+        invalidatesTags: ["rooms", "slots"],
       }),
 
       deleteRoom: builder.mutation({
@@ -81,17 +81,14 @@ export const baseApi = createApi({
       }),
       createARoom: builder.mutation({
         query: (payload) => {
-          
           return {
             url: `/rooms`,
             method: "POST",
-            body:payload
+            body: payload,
           };
         },
         invalidatesTags: ["rooms"],
       }),
-
-
 
       getSlot: builder.query({
         query: () => {
@@ -100,19 +97,18 @@ export const baseApi = createApi({
             method: "GET",
           };
         },
-        providesTags:["slots"]
+        providesTags: ["slots"],
       }),
 
       updateSlot: builder.mutation({
-        query: ({slotId,roomId:room,date,startTime,endTime}) => {
+        query: ({ slotId, roomId: room, date, startTime, endTime }) => {
           return {
             url: `/slots/${slotId}`,
             method: "PUT",
-            body: {room,date,startTime,endTime},
+            body: { room, date, startTime, endTime },
           };
-        
         },
-        invalidatesTags:["slots"]
+        invalidatesTags: ["slots"],
       }),
 
       deleteSlot: builder.mutation({
@@ -130,14 +126,11 @@ export const baseApi = createApi({
           return {
             url: `/slots`,
             method: "POST",
-            body:payload
+            body: payload,
           };
         },
         invalidatesTags: ["slots"],
       }),
-
-
-
     };
   },
 });
@@ -153,6 +146,6 @@ export const {
   useDeleteSlotMutation,
   useUpdateSlotMutation,
   useCreateARoomMutation,
-  useCreateAslotMutation
- 
+  useCreateAslotMutation,
+  useGetAroomQuery
 } = baseApi;
