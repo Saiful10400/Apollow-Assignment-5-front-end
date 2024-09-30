@@ -84,7 +84,7 @@ const BookingProcess = () => {
 
   const move = useNavigate();
   useEffect(() => {
-    if (bookingData.statusCode === 200) {
+    if (bookingData?.statusCode === 200) {
       move(`/confirm-booking/${bookingData?.data?._id}`);
     }
   }, [bookingData, move]);

@@ -142,7 +142,6 @@ export const baseApi = createApi({
         invalidatesTags: ["slots"],
       }),
 
-
       createAbooking: builder.mutation({
         query: (payload) => {
           return {
@@ -152,6 +151,17 @@ export const baseApi = createApi({
           };
         },
         invalidatesTags: ["booking"],
+      }),
+
+      getABooking: builder.query({
+        query: (payload) => {
+      
+          return {
+            url: `/booking/${payload.id}`,
+            method: "GET",
+          };
+        },
+        
       }),
     };
   },
@@ -171,5 +181,6 @@ export const {
   useCreateAslotMutation,
   useGetAroomQuery,
   useGetSpecificSlotQuery,
-  useCreateAbookingMutation
+  useCreateAbookingMutation,
+  useGetABookingQuery
 } = baseApi;

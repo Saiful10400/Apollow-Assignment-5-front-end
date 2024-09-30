@@ -12,6 +12,7 @@ import BookingManage from "../Components/Pages/AdminDashboard/SubPages/Bookings/
 import SlotManage from "../Components/Pages/AdminDashboard/SubPages/Slots/SlotManage";
 import SingleRoom from "../Components/Pages/SingleRoom/SingleRoom";
 import BookingProcess from "../Components/Pages/BookingProcess/BookingProcess";
+import Payment from "../Components/Pages/Payment/Payment";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -47,26 +48,30 @@ const routes = createBrowserRouter([
         path: "/contact-us",
         element: <ContactUs />,
       },
+      {
+        path: "/confirm-booking/:id",
+        element: <Payment/>,
+      },
     ],
   },
   {
     path: "/admin/dashboard",
     element: <AdminDashboard />,
-    children:[
+    children: [
       {
-        path:"room",
-        element:<RoomManage/>
+        path: "room",
+        element: <RoomManage />,
       },
       {
-        path:"booking",
-        element:<BookingManage/>
+        path: "booking",
+        element: <BookingManage />,
       },
       {
-        path:"slot",
-        element:<SlotManage/>
-      }
-    ]
-  }
+        path: "slot",
+        element: <SlotManage />,
+      },
+    ],
+  },
 ]);
 
 export default routes;
