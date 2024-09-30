@@ -11,6 +11,7 @@ import RoomManage from "../Components/Pages/AdminDashboard/SubPages/Rooms/RoomMa
 import BookingManage from "../Components/Pages/AdminDashboard/SubPages/Bookings/BookingManage";
 import SlotManage from "../Components/Pages/AdminDashboard/SubPages/Slots/SlotManage";
 import SingleRoom from "../Components/Pages/SingleRoom/SingleRoom";
+import BookingProcess from "../Components/Pages/BookingProcess/BookingProcess";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,10 @@ const routes = createBrowserRouter([
       {
         path: "/meeting-rooms/:id",
         element: <SingleRoom />,
+      },
+      {
+        path: "/meeting-rooms/booking/:id",
+        element: <BookingProcess />,
       },
       {
         path: "/authentication/:id",

@@ -9,7 +9,7 @@ export const baseApi = createApi({
       if (getToken()) header.set("Authorization", getToken() as string);
     },
   }),
-  tagTypes: ["Products", "authentication", "rooms", "slots"],
+  tagTypes: ["Products", "authentication", "rooms", "slots","booking"],
   endpoints: (builder) => {
     return {
       signup: builder.mutation({
@@ -99,6 +99,16 @@ export const baseApi = createApi({
         },
         providesTags: ["slots"],
       }),
+      getSpecificSlot: builder.query({
+        query: (url) => {
+          
+          return {
+            url: url,
+            method: "GET",
+          };
+        },
+        providesTags: ["slots"],
+      }),
 
       updateSlot: builder.mutation({
         query: ({ slotId, roomId: room, date, startTime, endTime }) => {
@@ -131,6 +141,18 @@ export const baseApi = createApi({
         },
         invalidatesTags: ["slots"],
       }),
+
+
+      createAbooking: builder.mutation({
+        query: (payload) => {
+          return {
+            url: `/booking`,
+            method: "POST",
+            body: payload,
+          };
+        },
+        invalidatesTags: ["booking"],
+      }),
     };
   },
 });
@@ -147,5 +169,7 @@ export const {
   useUpdateSlotMutation,
   useCreateARoomMutation,
   useCreateAslotMutation,
-  useGetAroomQuery
+  useGetAroomQuery,
+  useGetSpecificSlotQuery,
+  useCreateAbookingMutation
 } = baseApi;

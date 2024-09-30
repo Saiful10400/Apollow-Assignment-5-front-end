@@ -13,7 +13,7 @@ const RoomCart = ({data}) => {
             <h1 className="font-medium text-base my-3">Total Capacity: {data.capacity}</h1>
             <h1 className="font-medium text-base">Total Price: {data.pricePerSlot}$</h1>
             </div>
-          <Link to={data._id} className="inline-block mt-4 w-full"><Button className="w-full font-semibold block " text="Details"/></Link>
+          <Link to={`${data._id}`} className="inline-block mt-4 w-full"><Button className="w-full font-semibold block " text="Details"/></Link>
         </div>
     );
 };

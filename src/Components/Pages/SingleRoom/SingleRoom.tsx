@@ -7,6 +7,12 @@ import { Link } from "react-router-dom";
 import Button from "../../Ui/Button";
 
 const SingleRoom = () => {
+
+// const pageUrl=useSearchParams()
+// console.log(pageUrl[0].get("go"),pageUrl[0].get("payed"))
+
+
+
   const { id } = useParams();
 
   const { data, isLoading } = useGetAroomQuery({ id });
@@ -33,7 +39,7 @@ const SingleRoom = () => {
   </div>
 </div>
 <div className="w-[30%]">
-  <Link to={""}><Button className="text-xl font-normal block w-[70%] mx-auto" text="Book Now"/></Link>
+  <Link to={`/meeting-rooms/booking/${id}`}><Button className="text-xl font-normal block w-[70%] mx-auto" text="Book Now"/></Link>
 </div>
 </div>
 
