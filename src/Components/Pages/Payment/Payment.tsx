@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { useGetABookingQuery } from "../../../Redux/api/api";
+import { useNavigate, useParams } from "react-router";
+import { useGetABookingQuery, useGetPaymentUrlQuery } from "../../../Redux/api/api";
 import CenterAlign from "../../Helper/CenterAlign";
 import Loading from "../../SharedComponent/Loading";
 import InputField from "../../Ui/Input";
@@ -34,11 +34,19 @@ const Payment = () => {
     }
   }, [data]);
 
+const [skipApiCall,setSkipApiCall]=useState(true)
+
+const{data:paymentUrl}=useGetPaymentUrlQuery(id,{skip:skipApiCall})
+const bookingConfirmHandle=()=>{
+setSkipApiCall(false)
+}
 
 
-
-
-
+useEffect(()=>{
+if(paymentUrl?.data){
+    window.location.href=paymentUrl.data
+}
+},[paymentUrl])
 
   return (
     <CenterAlign>
@@ -113,7 +121,7 @@ const Payment = () => {
                 <img className="w-[60px] h-[60px]" src={amarPay} alt="" />
             </label>
 
-            <Button className="block w-full text-lg font-normal mt-3" text="Confirm Booking"/>
+            <Button onClick={bookingConfirmHandle} className="block w-full text-lg font-normal mt-3" text="Confirm Booking"/>
           </div>
 
           </div>

@@ -163,6 +163,16 @@ export const baseApi = createApi({
         },
         
       }),
+      getPaymentUrl: builder.query({
+        query: (payload) => {
+ 
+          return {
+            url: `/pay/${payload}`,
+            method: "GET",
+          };
+        },
+        
+      }),
     };
   },
 });
@@ -182,5 +192,6 @@ export const {
   useGetAroomQuery,
   useGetSpecificSlotQuery,
   useCreateAbookingMutation,
-  useGetABookingQuery
+  useGetABookingQuery,
+  useGetPaymentUrlQuery
 } = baseApi;
