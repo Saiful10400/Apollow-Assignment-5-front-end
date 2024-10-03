@@ -1,16 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { useGetABookingQuery, useGetPaymentUrlQuery } from "../../../Redux/api/api";
+import {
+  useGetABookingQuery,
+  useGetPaymentUrlQuery,
+} from "../../../Redux/api/api";
 import CenterAlign from "../../Helper/CenterAlign";
 import Loading from "../../SharedComponent/Loading";
 import InputField from "../../Ui/Input";
-import amarPay from "../../../assets/Payment/amarPay.png"
+import amarPay from "../../../assets/Payment/amarPay.png";
 import Button from "../../Ui/Button";
+import swal from "sweetalert";
+
+
 
 const Payment = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetABookingQuery({ id });
-  console.log(data);
+
+// showing success payment message.
+const move=useNavigate()
+useEffect(()=>{
+if(data?.data?.isPaid){
+  swal("Success",`Payment Successfull.`, "success").then(()=>move("/"))
+}
+if(data?.data?.isFailed){
+  swal("Failed",`Payment Failed.`, "error")
+}
+},[data,move])
+
+
+
+
   // user data handle.
   const initialState = {
     email: "",
@@ -34,19 +54,27 @@ const Payment = () => {
     }
   }, [data]);
 
-const [skipApiCall,setSkipApiCall]=useState(true)
+  const [skipApiCall, setSkipApiCall] = useState(true);
 
-const{data:paymentUrl}=useGetPaymentUrlQuery(id,{skip:skipApiCall})
-const bookingConfirmHandle=()=>{
-setSkipApiCall(false)
-}
+  const { data: paymentUrl,isLoading:urlLoading,error:urlError } = useGetPaymentUrlQuery(id, { skip: skipApiCall });
+  const bookingConfirmHandle = () => {
+    setSkipApiCall(false);
+  };
+
+  useEffect(() => {
+    if (paymentUrl?.data) {
+      window.location.href = paymentUrl.data;
+    }
+  }, [paymentUrl]);
 
 
-useEffect(()=>{
-if(paymentUrl?.data){
-    window.location.href=paymentUrl.data
-}
-},[paymentUrl])
+  // showing errors .
+  useEffect(()=>{
+    if(urlError){
+      swal("Failed", urlError?.data?.message, "error");
+   
+    }
+  },[urlError])
 
   return (
     <CenterAlign>
@@ -91,7 +119,6 @@ if(paymentUrl?.data){
             </form>
           </div>
 
-
           <div className="w-[30%] rounded-xl bg-[#f9f9f9] p-6">
             <h1 className="text-xl font-semibold">Booking Summery</h1>
             <div className=" mt-5 border-b pb-3 border-black">
@@ -107,25 +134,45 @@ if(paymentUrl?.data){
               </h1>
               <h1 className="text-lg font-normal flex justify-between">
                 Booking Time:{" "}
-                <span><span className="font-bold">{data?.data?.slot?.startTime}</span>{" "}
-                To{" "}
-                <span className="font-bold">{data?.data?.slot?.endTime}</span></span>
+                <span>
+                  <span className="font-bold">
+                    {data?.data?.slot?.startTime}
+                  </span>{" "}
+                  To{" "}
+                  <span className="font-bold">{data?.data?.slot?.endTime}</span>
+                </span>
               </h1>
             </div>
-            <h1 className="flex justify-between text-xl"><span>Total Cost:</span> <span className="font-bold">$ {data?.data?.slot?.room?.pricePerSlot}</span></h1>
+            <h1 className="flex justify-between text-xl">
+              <span>Total Cost:</span>{" "}
+              <span className="font-bold">
+                $ {data?.data?.slot?.room?.pricePerSlot}
+              </span>
+            </h1>
 
             <div>
-            <h1 className="text-xl font-semibold mt-5">Select Payment Method</h1>
-            <label className="flex items-center mt-3 gap-4" htmlFor="amarPay">
-                <input className="scale-125" id="amarPay" defaultChecked type="radio" />
+              <h1 className="text-xl font-semibold mt-5">
+                Select Payment Method
+              </h1>
+              <label className="flex items-center mt-3 gap-4" htmlFor="amarPay">
+                <input
+                  className="scale-125"
+                  id="amarPay"
+                  defaultChecked
+                  type="radio"
+                />
                 <img className="w-[60px] h-[60px]" src={amarPay} alt="" />
-            </label>
+              </label>
 
-            <Button onClick={bookingConfirmHandle} className="block w-full text-lg font-normal mt-3" text="Confirm Booking"/>
+              <Button
+              disable={urlLoading}
+              loading={urlLoading}
+                onClick={bookingConfirmHandle}
+                className="block w-full text-lg font-normal mt-3"
+                text="Confirm Booking"
+              />
+            </div>
           </div>
-
-          </div>
-          
         </div>
       )}
     </CenterAlign>

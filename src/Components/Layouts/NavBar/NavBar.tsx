@@ -115,7 +115,7 @@ const NavBar = () => {
                     {loggedInUser.role === "user" ? (
                       <li className="flex items-center gap-3 text-lg">
                         <RiBookmark3Line className="text-2xl" />
-                        <Link to={"/"}>My Bookings</Link>
+                        <Link to={"/user/my-bookings"}>My Bookings</Link>
                       </li>
                     ) : (
                       <li className="flex items-center gap-3 text-lg">

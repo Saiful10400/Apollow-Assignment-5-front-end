@@ -9,7 +9,7 @@ export const baseApi = createApi({
       if (getToken()) header.set("Authorization", getToken() as string);
     },
   }),
-  tagTypes: ["Products", "authentication", "rooms", "slots","booking"],
+  tagTypes: ["Products", "authentication", "rooms", "slots", "booking"],
   endpoints: (builder) => {
     return {
       signup: builder.mutation({
@@ -41,7 +41,7 @@ export const baseApi = createApi({
       }),
 
       getAroom: builder.query({
-        query: ({id}) => {
+        query: ({ id }) => {
           return {
             url: `/rooms/${id}`,
             method: "GET",
@@ -101,7 +101,6 @@ export const baseApi = createApi({
       }),
       getSpecificSlot: builder.query({
         query: (url) => {
-          
           return {
             url: url,
             method: "GET",
@@ -152,26 +151,29 @@ export const baseApi = createApi({
         },
         invalidatesTags: ["booking"],
       }),
-
       getABooking: builder.query({
         query: (payload) => {
-      
           return {
             url: `/booking/${payload.id}`,
             method: "GET",
           };
         },
-        
+      }),
+      getAuserAllBookings: builder.query({
+        query: (payload) => {
+          return {
+            url: `/booking/users-all/${payload}`,
+            method: "GET",
+          };
+        },
       }),
       getPaymentUrl: builder.query({
         query: (payload) => {
- 
           return {
             url: `/pay/${payload}`,
             method: "GET",
           };
         },
-        
       }),
     };
   },
@@ -193,5 +195,6 @@ export const {
   useGetSpecificSlotQuery,
   useCreateAbookingMutation,
   useGetABookingQuery,
-  useGetPaymentUrlQuery
+  useGetPaymentUrlQuery,
+  useGetAuserAllBookingsQuery
 } = baseApi;

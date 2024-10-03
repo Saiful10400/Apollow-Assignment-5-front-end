@@ -13,6 +13,8 @@ import SlotManage from "../Components/Pages/AdminDashboard/SubPages/Slots/SlotMa
 import SingleRoom from "../Components/Pages/SingleRoom/SingleRoom";
 import BookingProcess from "../Components/Pages/BookingProcess/BookingProcess";
 import Payment from "../Components/Pages/Payment/Payment";
+import MybookingRoot from "../Components/Pages/MyBookings/MybookingRoot";
+import MyBooking from "../Components/Pages/MyBookings/SubBranch/MyBooking";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -72,6 +74,16 @@ const routes = createBrowserRouter([
       },
     ],
   },
+  {
+    path:"/user/my-bookings",
+    element:<MybookingRoot/>,
+    children:[
+      {
+        path:"",
+        element:<MyBooking/>
+      }
+    ]
+  }
 ]);
 
 export default routes;

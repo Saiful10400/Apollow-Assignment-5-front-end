@@ -1,14 +1,14 @@
 
 import { useEffect, useState } from "react";
-import AsideNav from "../../Layouts/AdminDashboard/AsideNav/AsideNav";
 import { Outlet } from "react-router";
 import { useGetLoggedInUserQuery } from "../../../Redux/api/api";
 import { useAppDispatch } from "../../../Redux/feathcer/hoocks";
 import { setLoading, setUser } from "../../../Redux/feathcer/AuthSlice";
 import { getToken } from "../../../Utils/getToken";
+import MyBookingAsideNav from "./SubBranch/Asidenav/MyBookingAsideNav";
 
 
-const AdminDashboard = () => {
+const MybookingRoot = () => {
 
     const [shouldCall, setShouldCall] = useState(false);
     // getting login user details, if the user is logged in.
@@ -35,7 +35,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="flex gap-x-9 items-start w-full box-border pl-14 pt-16 justify-start">
-      <AsideNav />
+      <MyBookingAsideNav />
       <div className=" lg:w-[1300px]">
       <Outlet />
       </div>
@@ -43,4 +43,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default MybookingRoot;
