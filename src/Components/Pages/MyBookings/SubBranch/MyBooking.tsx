@@ -5,21 +5,21 @@ import { useGetAuserAllBookingsQuery } from "../../../../Redux/api/api";
 const MyBooking = () => {
   // get user all booking
   const { loggedInUser } = useAppSelector((state) => state.authStore);
-  console.log(loggedInUser)
+  console.log(loggedInUser);
 
+  const [skip, setSkip] = useState(true);
+  // fetch a suer all booking.
+  const { data, isLoading } = useGetAuserAllBookingsQuery(loggedInUser?._id, {
+    skip: skip,
+  });
 
-const[skip,setSkip]=useState(true)
-// fetch a suer all booking.
-const{data,isLoading}=useGetAuserAllBookingsQuery(loggedInUser?._id,{skip:skip})
+  console.log(data);
 
-console.log(data)
-
-useEffect(()=>{
-if(loggedInUser){
-setSkip(false)
-}
-},[loggedInUser])
-
+  useEffect(() => {
+    if (loggedInUser) {
+      setSkip(false);
+    }
+  }, [loggedInUser]);
 
   return (
     <>
@@ -53,15 +53,24 @@ setSkip(false)
                   >
                     <td className="font-semibold text-center">{idx + 1}</td>
 
-                      <td  className="font-semibold text-center">{item.slot.room.name}</td>
-                      <td  className="font-semibold text-center">{item.slot.room.roomNo}</td>
-                      <td  className="font-semibold text-center">{item.slot.date}</td>
-                      <td  className="font-semibold text-center">{item.slot.startTime}</td>
-                      <td  className="font-semibold text-center">{item.slot.endTime}</td>
-                      <td  className="font-bold text-center">{item.isConfirm?<span className="text-green-500">Confirmed</span>:<span className="text-red-500">Unconfirmed</span>}</td>
-                     
-               
-
+                    <td className="font-semibold text-center">
+                      {item.slot.room.name}
+                    </td>
+                    <td className="font-semibold text-center">
+                      {item.slot.room.roomNo}
+                    </td>
+                    <td className="font-semibold text-center">
+                      {item.slot.date}
+                    </td>
+                    <td className="font-semibold text-center">
+                      {item.slot.startTime}
+                    </td>
+                    <td className="font-semibold text-center">
+                      {item.slot.endTime}
+                    </td>
+                    <td className={`font-bold text-center ${item.status==="Pending"?"text-[#FFC107]":item.status==="Confirmed"?"text-green-500":"text-red-500"}`}>
+                      {item.status}
+                    </td>
                   </tr>
                 );
               })}
@@ -73,8 +82,6 @@ setSkip(false)
             No Item Available!
           </div>
         )} */}
-        
-        
       </div>
     </>
   );

@@ -9,7 +9,14 @@ export const baseApi = createApi({
       if (getToken()) header.set("Authorization", getToken() as string);
     },
   }),
-  tagTypes: ["Products", "authentication", "rooms", "slots", "booking"],
+  tagTypes: [
+    "Products",
+    "authentication",
+    "rooms",
+    "slots",
+    "booking",
+    "allBookingForAdmin",
+  ],
   endpoints: (builder) => {
     return {
       signup: builder.mutation({
@@ -167,6 +174,35 @@ export const baseApi = createApi({
           };
         },
       }),
+      getAllBookingForAdmin: builder.query({
+        query: () => {
+          return {
+            url: `/booking`,
+            method: "GET",
+          };
+        },
+        providesTags: ["allBookingForAdmin"],
+      }),
+
+      deleteABooking: builder.mutation({
+        query: (payload) => {
+          return {
+            url: `/booking/${payload}`,
+            method: "DELETE",
+          };
+        },
+        invalidatesTags:["allBookingForAdmin"]
+      }),
+      confirmABooking: builder.mutation({
+        query: (payload) => {
+          return {
+            url: `/booking/${payload.id}?action=${payload.action}`,
+            method: "PUT",
+          };
+        },
+        invalidatesTags:["allBookingForAdmin"]
+      }),
+
       getPaymentUrl: builder.query({
         query: (payload) => {
           return {
@@ -180,6 +216,9 @@ export const baseApi = createApi({
 });
 
 export const {
+  useConfirmABookingMutation,
+  useDeleteABookingMutation,
+  useGetAllBookingForAdminQuery,
   useLoginMutation,
   useSignupMutation,
   useGetLoggedInUserQuery,
@@ -196,5 +235,5 @@ export const {
   useCreateAbookingMutation,
   useGetABookingQuery,
   useGetPaymentUrlQuery,
-  useGetAuserAllBookingsQuery
+  useGetAuserAllBookingsQuery,
 } = baseApi;

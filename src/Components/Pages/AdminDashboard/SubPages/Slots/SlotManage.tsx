@@ -28,7 +28,7 @@ const SlotManage = () => {
     return (
         <div className="">
       <div className="flex justify-between items-center">
-        <h1 className="text-4xl font-bold">Room Management</h1>
+        <h1 className="text-4xl font-bold">Slot Management</h1>
 
         <Button
           onClick={createNewButtonHandle}

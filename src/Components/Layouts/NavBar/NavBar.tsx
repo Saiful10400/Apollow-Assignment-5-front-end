@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/whiteLogo.png";
 import CenterAlign from "../../Helper/CenterAlign";
-import { useAppSelector } from "../../../Redux/feathcer/hoocks";
+import { useAppDispatch, useAppSelector } from "../../../Redux/feathcer/hoocks";
 import { useEffect, useState } from "react";
 import ToggleButton from "../../Ui/ToggleButton";
 import "./style.css";
@@ -9,6 +9,7 @@ import { BiMenu } from "react-icons/bi";
 import { CiLogout } from "react-icons/ci";
 import { RiBookmark3Line } from "react-icons/ri";
 import { BiSolidDashboard } from "react-icons/bi";
+import { removeUser } from "../../../Redux/feathcer/AuthSlice";
 const NavBar = () => {
   // useEffect(() => {
   //   const handleClose = (event) => {
@@ -68,6 +69,16 @@ const NavBar = () => {
     };
   }, []);
 
+
+  const dispatch=useAppDispatch()
+  // logout handle.
+const logoutHandle=()=>{
+    // clear the local storage token.
+    localStorage.removeItem("token")
+    // clear state.
+    dispatch(removeUser())
+}
+
   return (
     <>
       {/* for desktop view */}
@@ -123,10 +134,12 @@ const NavBar = () => {
                         <Link to={"admin/dashboard/room"}>Dashboard</Link>
                       </li>
                     )}
+                    <button onClick={logoutHandle}>
                     <li className="flex items-center gap-3 text-lg">
                       <CiLogout className="text-2xl" />
-                      <button>Logout</button>
+                      Logout
                     </li>
+                    </button>
                   </ul>
                 </div>
               </div>

@@ -15,6 +15,7 @@ import BookingProcess from "../Components/Pages/BookingProcess/BookingProcess";
 import Payment from "../Components/Pages/Payment/Payment";
 import MybookingRoot from "../Components/Pages/MyBookings/MybookingRoot";
 import MyBooking from "../Components/Pages/MyBookings/SubBranch/MyBooking";
+import Error from "../Components/Pages/Error/Error";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -55,6 +56,7 @@ const routes = createBrowserRouter([
         element: <Payment/>,
       },
     ],
+    errorElement:<Error/>
   },
   {
     path: "/admin/dashboard",
@@ -73,6 +75,7 @@ const routes = createBrowserRouter([
         element: <SlotManage />,
       },
     ],
+    errorElement:<Error/>
   },
   {
     path:"/user/my-bookings",
@@ -82,7 +85,8 @@ const routes = createBrowserRouter([
         path:"",
         element:<MyBooking/>
       }
-    ]
+    ],
+    errorElement:<Error/>
   }
 ]);
 

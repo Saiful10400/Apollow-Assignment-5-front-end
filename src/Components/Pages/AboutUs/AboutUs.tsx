@@ -1,72 +1,129 @@
-import avatar from "../../../assets/aboutUs/avatar.png";
+import team from "../../../assets/aboutUs/team.jpeg";
 import CenterAlign from "../../Helper/CenterAlign";
-
+import { getAllTeamMember, getEvalution } from "./demoData";
+import { MdEmail } from "react-icons/md";
+import { FaLinkedin } from "react-icons/fa";
+import "./style.css";
 const AboutUs = () => {
   return (
     <div className="min-h-[70vh]">
       <CenterAlign>
-        {/* div that contain all float element. */}
-
-        <div  className="flex px-4 lg:px-0 items-start flex-col-reverse lg:flex-row justify-center">
-          <div data-aos="fade-right" className="lg:w-1/2 w-full mt-20">
-            <h1 className="lg:text-6xl text-4xl lg:text-left text-center font-normal">About MECHA</h1>
-            <p className="mt-4 text-lg lg:text-left text-center lg:text-xl">
-              We are committed not only to bringing you the best about
-              mechanical keyboards, also turning the best designs into real
-              products.
-            </p>
-
-            <div className="flex flex-col lg:flex-row gap-5 mt-7 p-5 border border-[#0000003f] rounded-lg">
-              <div className="w-full bg-gradient-to-tr p-5 rounded-lg from-[#cfcfcf57] to-[#afafaf93]">
-                <h1 className="text-orange-500">Our vision</h1>
-                <h1 className="text-2xl font-semibold">
-                  become the destination for keyboard enthusiasts.
-                </h1>
-                <p className="mt-5">
-                  Our vision is to become the go-to destination for keyboard
-                  enthusiasts around the world, offering the most diverse,
-                  innovative, and customizable mechanical keyboards and
-                  accessories.
-                </p>
-              </div>
-              <div className="w-full bg-gradient-to-tr p-5 rounded-lg from-[#cfcfcf57] to-[#afafaf93]">
-                <h1 className="text-orange-500">Our vision</h1>
-                <h1 className="text-2xl font-semibold">
-                  become the destination for keyboard enthusiasts.
-                </h1>
-                <p className="mt-5">
-                  Our vision is to become the go-to destination for keyboard
-                  enthusiasts around the world, offering the most diverse,
-                  innovative, and customizable mechanical keyboards and
-                  accessories.
-                </p>
-              </div>
+        <div>
+          <div className=" min-h-[15vh] to-center">
+            <h1 className="text-5xl text-center font-normal">
+              To get to know us,
+              <br />
+              come and meet us!
+            </h1>
+          </div>
+          <div className="flex flex-col lg:flex-row items-center gap-10 mt-24">
+            <img className="rounded-l-3xl" src={team} alt="team imge" />
+            <div>
+              <h1 className="text-5xl mb-5">Our Mission</h1>
+              <p className="text-lg font-medium">
+                At <span className="font-bold">Acowork</span>, we are committed
+                to creating an inspiring and flexible work environment where
+                professionals, entrepreneurs, and creatives can thrive. Our
+                mission is to foster collaboration, innovation, and community by
+                providing top-notch facilities, dynamic workspaces, and seamless
+                services that cater to the diverse needs of modern workers. We
+                believe in empowering individuals and teams to unlock their full
+                potential, whether they’re building a startup, growing a
+                business, or pursuing personal projects. Together, we strive to
+                create a supportive, inclusive, and vibrant ecosystem where
+                ideas flourish, connections grow, and success is shared.
+              </p>
             </div>
           </div>
 
+          <div>
+            <h1 className="text-5xl mt-28 mb-16 text-center">Meet the Team</h1>
 
-          <div data-aos="fade-left" className="lg:w-1/2 w-full text-center">
-            <img
-              className="w-[70%] inline-block"
-              src={avatar}
-              alt="about-us-page-avatar"
-            />
-            <div className="inline-grid grid-cols-2 lg:w-[70%] p-5 mt-5 gap-5 border border-[#0000003f] rounded-lg">
-              <div className="bg-gradient-to-tr from-[#cfcfcf57] to-[#afafaf93] p-3 rounded-lg">
-                <h1 className="text-5xl">3.5</h1>
-                <h1 className="text-lg">Years Experience</h1>
-              </div>
-              <div className="bg-gradient-to-tr from-[#cfcfcf57] to-[#afafaf93] p-3 rounded-lg">
-                <h1 className="text-5xl">2.6 K</h1>
-                <h1 className="text-lg">Total Review.</h1>
-              </div>
-              <div className="bg-gradient-to-tr from-[#cfcfcf57] to-[#afafaf93] p-3 rounded-lg">
-                <h1 className="text-5xl">7.9 K</h1>
-                <h1 className="text-lg">Total Customer.</h1>
-              </div>
-              <div className="bg-gradient-to-tr from-[#cfcfcf57] to-[#afafaf93] p-3 rounded-lg">
-                <h1 className="text-5xl">14</h1>
-                <h1 className="text-lg">Branch in USA</h1>
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-4">
+              {getAllTeamMember()?.map((item, idx) => {
+                return (
+                  <div
+                    key={idx}
+                    className="relative bg-container overflow-hidden w-full h-[500px]"
+                  >
+                    <img
+                      className="w-full h-full object-cover"
+                      src={item.image}
+                      alt=""
+                    />
+                    <div className="absolute py-2 userTittle bottom-0 left-0 bg-gradient-to-r from-[#000000] to-[#00000075] w-full px-3">
+                      <h1 className="text-xl font-normal text-white">
+                        {item.name}
+                      </h1>
+                      <h1 className="text-xl font-normal text-white">
+                        {item.title}
+                      </h1>
+                    </div>
+                    <div className="hoverInContainer absolute to-center flex-col gap-5 px-5 text-center">
+                      <p className="text-white font-semibold">{item.bio}</p>
+                      <div className="to-center text-3xl gap-4 text-gray-300">
+                        <a
+                          target="_blank"
+                          href={"mailto:" + item.contact.email}
+                        >
+                          <MdEmail />
+                        </a>
+                        <a target="_blank" href={item.contact.linkedin}>
+                          <FaLinkedin />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div>
+              <h1 className="text-5xl mt-28 mb-11 text-center">
+                Our Story: Background and Evolution
+              </h1>
+              <p className="text-center font-normal text-lg">
+                Our journey began with a simple idea: to create a space where
+                innovation, collaboration, and productivity thrive. Over the
+                years, we've evolved into a thriving co-working community that
+                serves freelancers, startups, and established businesses alike.
+              </p>
+              <p className="font-normal text-lg">
+                <h1 className="font-semibold text-2xl mt-6 mb-4">Background:</h1>
+                Founded in 2018, we started as a small, local co-working space
+                catering to a handful of creative professionals. The idea was to
+                foster a community where people could come together, share
+                ideas, and work in an environment designed to inspire
+                creativity. As the demand for flexible workspaces grew, so did
+                we.
+              </p>
+              <h1 className="text-2xl font-semibold mt-4">Evolution:</h1>
+              <div className="grid grid-cols-3 gap-4 mt-4">
+
+
+                <div className="shadow-lg text-center bg-gray-300 p-3 rounded-lg">
+                  <h1 className="text-xl font-bold">
+                    1<sup>st</sup> Year
+                  </h1>
+                  <p className="text-lg font-normal mt-4 px-3">{getEvalution().year1}</p>
+                </div>
+                
+                <div className="shadow-lg text-center bg-gray-300 p-3 rounded-lg">
+                  <h1 className="text-xl font-bold">
+                    2<sup>nd</sup> Year
+                  </h1>
+                  <p className="text-lg font-normal mt-4 px-3">{getEvalution().year2}</p>
+                </div>
+
+                <div className="shadow-lg text-center bg-gray-300 p-3 rounded-lg">
+                  <h1 className="text-xl font-bold">
+                    3<sup>rd</sup> Year
+                  </h1>
+                  <p className="text-lg font-normal mt-4 px-3">{getEvalution().year3}</p>
+                </div>
+
+
+
               </div>
             </div>
           </div>

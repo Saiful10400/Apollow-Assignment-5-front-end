@@ -21,7 +21,7 @@ const Payment = () => {
 const move=useNavigate()
 useEffect(()=>{
 if(data?.data?.isPaid){
-  swal("Success",`Payment Successfull.`, "success").then(()=>move("/"))
+  swal("Success",`Payment Successfull.`, "success").then(()=>move("/user/my-bookings"))
 }
 if(data?.data?.isFailed){
   swal("Failed",`Payment Failed.`, "error")
