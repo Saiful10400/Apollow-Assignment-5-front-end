@@ -81,8 +81,8 @@ if(data?.data?.isFailed){
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="min-h-[60vh] mt-5 flex items-start gap-10">
-          <div className="w-[70%]">
+        <div className="min-h-[60vh] px-4 lg:px-0 mt-5 flex flex-col lg:flex-row items-start gap-10">
+          <div className="lg:w-[70%] w-full">
             <h1 className="text-3xl font-semibold">Billing Details</h1>
             <form>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
@@ -119,7 +119,7 @@ if(data?.data?.isFailed){
             </form>
           </div>
 
-          <div className="w-[30%] rounded-xl bg-[#f9f9f9] p-6">
+          <div className="lg:w-[30%] w-full rounded-xl bg-[#f9f9f9] p-6">
             <h1 className="text-xl font-semibold">Booking Summery</h1>
             <div className=" mt-5 border-b pb-3 border-black">
               <h1 className="text-lg font-normal flex justify-between">

@@ -69,18 +69,28 @@ const Footer = () => {
           </div>
 
           <div className="lg:w-[30%] w-full lg:text-start text-center">
-            <span className="font-bold text-lg mb-3">Feedback</span>
-            <h1 className="pt-5">
-              You can send us Feedback via our Contact Form, support@keygem.com
-              or Discord. If you are happy with our Service you can leave a
-              Review on Trustpilot or Google.
-            </h1>
+            <span className="font-bold text-lg mb-3">Contact Info.</span>
+            <div className="mt-5 ">
+              <h1 className="font-semibold">E-mail: <span className="font-normal">info@acowork.com</span></h1>
+              <h1 className="font-semibold my-3">Phone: <span className="font-normal">(+44) 123 456 789</span></h1>
+              <h1 className="font-semibold">Office Address: <span className="font-normal">100 Smith Street, Collingwood VIC 3066</span></h1>
+            </div>
           </div>
         </div>
         <div className="mt-8 flex flex-col-reverse lg:flex-row justify-between items-start">
-          <h1 className="lg:text-start text-center w-full">
-            Copyright © 2024 Mecha Store.
-          </h1>
+          <div className="w-full">
+          <h1 className="lg:text-start text-center mb-3 w-full">
+              Copyright © 2024 Acwork.
+            </h1>
+            <a className="text-xs hover:underline" href="/">
+              Privacy Policy
+            </a>
+            <a className="text-xs ml-4 hover:underline" href="/">
+              Terms of Service
+            </a>
+
+           
+          </div>
           <div className="flex items-center justify-center lg:justify-end w-full gap-4">
             <img className="w-[50px]" src={masterCard} alt="" />
             <img className="w-[50px]" src={paypal} alt="" />

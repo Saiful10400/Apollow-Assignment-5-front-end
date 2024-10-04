@@ -12,7 +12,7 @@ const AboutUs = () => {
           <div className=" min-h-[15vh] to-center">
             <h1 className="text-5xl text-center font-normal">
               To get to know us,
-              <br />
+           
               come and meet us!
             </h1>
           </div>

@@ -32,6 +32,7 @@ const InputField: FC<InputFieldProps> = ({
       </label>
       {type === "textarea" ? (
         <textarea
+        style={{resize:"none"}}
           value={altimeValue}
           onChange={valueUpdate}
           required

@@ -42,9 +42,6 @@ const NavBar = () => {
         <NavLink to={"/contact-us"}>Contact Us</NavLink>
       </li>
       <li>
-        <NavLink to={"/dashboard"}>Dashboard</NavLink>
-      </li>
-      <li>
         <NavLink to={"/authentication/login"}> Login/Register</NavLink>
       </li>
     </>

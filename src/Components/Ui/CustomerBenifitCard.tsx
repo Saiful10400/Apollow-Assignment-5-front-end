@@ -7,7 +7,7 @@ const CustomerBenifitCard = ({data}) => {
                 <img className='w-[70%] h-[70%] rounded-full' src={data.icon} alt="" />
             </div>
             <h1 className='text-lg font-bold mt-3'>{data.tittle}</h1>
-            <p className='text-sm font-medium mt-3'>{data.details}</p>
+            <p className='text-sm font-normal mt-3'>{data.details}</p>
         </div>
     );
 };

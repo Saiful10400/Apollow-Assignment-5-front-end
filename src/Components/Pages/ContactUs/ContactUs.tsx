@@ -11,7 +11,7 @@ import { FormEvent } from "react";
 const ContactUs = () => {
   // send response handle.
 
-  const messageSendHandle = (e:FormEvent<HTMLFormElement>) => {
+  const messageSendHandle = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     swal(
       "Thank you for reaching out!",
@@ -24,7 +24,9 @@ const ContactUs = () => {
       <CenterAlign>
         <div>
           <div data-aos="fade-up" className="py-14 px-4 lg:px-0">
-            <h1 className="text-center text-4xl lg:text-5xl">Contact our team</h1>
+            <h1 className="text-center text-4xl lg:text-5xl">
+              Contact our team
+            </h1>
             <p className="lg:w-[70%] text-center mx-auto mt-5 font-normal ">
               Got any questions about our keyboards or customizing your setup?
               We're here to help! Chat with our friendly team 24/7, and we'll
@@ -33,13 +35,17 @@ const ContactUs = () => {
             </p>
           </div>
           <div className="flex items-start gap-12 justify-center mt-7 px-4 lg:px-0 flex-col-reverse lg:flex-row">
-            <form data-aos="fade-right" onSubmit={messageSendHandle} className="lg:w-[40%]">
+            <form
+              data-aos="fade-right"
+              onSubmit={messageSendHandle}
+              className="lg:w-[40%]"
+            >
               <div className="grid grid-cols-2 gap-7">
                 <InputField type="text" placeholder="First Name" />
                 <InputField type="text" placeholder="Last Name" />
               </div>
               <InputField type="email" placeholder="Email" />
-              <InputField type="phone" placeholder="Phone" />
+              <InputField type="text" placeholder="Subject" />
               <InputField type="textarea" placeholder="Your Message" />
               <Button text="Send Message" className="w-full text-lg" />
             </form>

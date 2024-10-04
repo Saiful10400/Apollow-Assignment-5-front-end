@@ -9,7 +9,7 @@ const Rooms = () => {
 
   return (
     <CenterAlign>
-      <div className="h-[200vh]">
+      <div className="lg:px-0 px-4">
         {isLoading ? (
           <Loading />
         ) : (

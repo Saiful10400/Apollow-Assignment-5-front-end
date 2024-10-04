@@ -10,7 +10,6 @@ import {
   useGetSpecificSlotQuery,
 } from "../../../Redux/api/api";
 import { useEffect, useState } from "react";
-import Loading from "../../SharedComponent/Loading";
 import InputField from "../../Ui/Input";
 import { useAppSelector } from "../../../Redux/feathcer/hoocks";
 import Button from "../../Ui/Button";
@@ -91,17 +90,17 @@ const BookingProcess = () => {
 
   return (
     <CenterAlign>
-      <div className="min-h-[60vh]">
+      <div className="px-4 lg:px-0">
         {
           <div className="min-h-[70vh]">
             <div>
               <form
                 onSubmit={formSubmitHandle}
-                className="grid grid-cols-1 mt-3 lg:grid-cols-2"
+                className="grid grid-cols-1 mt-3 lg:grid-cols-2 gap-7 lg:gap-0"
               >
                 <div>
                   <h1 className="text-2xl font-semibold">Booking Schedule:</h1>
-                  <div className="flex items-start gap-4 mt-4">
+                  <div className="flex flex-col lg:flex-row items-center lg:items-start lg:gap-4 mt-4">
                     <div>
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DateCalendar onChange={calenderInputHandle} />
@@ -109,6 +108,7 @@ const BookingProcess = () => {
                     </div>
                     <div>
                       <Autocomplete
+                      
                         value={value}
                         onChange={(event: any, newValue: string | null) => {
                           setValue(newValue);

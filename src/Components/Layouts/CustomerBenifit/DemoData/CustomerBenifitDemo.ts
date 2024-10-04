@@ -1,35 +1,35 @@
-import pay from "../../../../../src/assets/userBenifit/pay.png";
+import available from "../../../../../src/assets/userBenifit/available.png";
 import support from "../../../../../src/assets/userBenifit/support.png";
-import secure from "../../../../../src/assets/userBenifit/secure.png";
-import quality from "../../../../../src/assets/userBenifit/quality.png";
+import instant from "../../../../../src/assets/userBenifit/confirm.png";
+import schedule from "../../../../../src/assets/userBenifit/sheduleing.png";
 
 const data = [
   {
-    icon: pay,
-    tittle: "Lowest Delivery Charge",
+    icon: available,
+    tittle: "Real-Time Availability",
     details:
-      "We offer the lowest delivery charges for express shipping options, so you can get your products faster without breaking the bank.",
+      "Stay updated with the latest availability of meeting rooms and workspaces. Our system shows live room statuses, so you can instantly find and book the perfect spot whenever you need it.",
     color: "#ebd3c5",
   },
   {
     icon: support,
     tittle: "24/7 Support",
     details:
-      "Our 24/7 customer support team is always ready to assist you with any queries, from order tracking to product recommendations.",
+      "Our dedicated support team is available around the clock to assist with any inquiries or issues. Whether it's booking help or facility support, we're here to ensure your experience is smooth and worry-free.",
     color: "#eaeed6",
   },
   {
-    icon: secure,
-    tittle: "Secure Payments",
+    icon: instant,
+    tittle: "Instant Booking Confirmation",
     details:
-      "Shop with confidence! We provide secure payment options to ensure your transactions are safe and protected.",
+      "Get immediate confirmation upon booking. No waiting, no hassles—just quick and seamless booking with all the details sent to your inbox instantly.",
     color: "#ffe47f",
   },
   {
-    icon: quality,
-    tittle: "Quality Guarantee",
+    icon: schedule,
+    tittle: "Flexible Scheduling",
     details:
-      "We only stock top-quality keyboards from the most reliable brands. If you're not satisfied, returns are easy and hassle-free!",
+      "We understand that plans can change. That's why our platform offers flexible scheduling options, allowing you to adjust or reschedule bookings with ease, ensuring your workspace always fits your schedule.",
     color: "#e9effc",
   },
 ];

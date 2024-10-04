@@ -6,14 +6,14 @@ import RoomCartCarosel from "./RoomCartCarosel/RoomCartCarosel";
 const RoomCart = ({data}) => {
 
     return (
-        <div className=' w-full min-h-11 shadow-xl rounded-lg px-2 py-3'>
+        <div data-aos="fade-up" className=' w-full min-h-11 shadow-xl rounded-lg px-2 py-3'>
             <div className="h-[300px] rounded-xl overflow-hidden"><RoomCartCarosel images={data.roomImages}/></div>
             <div className="text-start mt-4">
             <h1 className="font-semibold text-lg">{data.name}</h1>
             <h1 className="font-medium text-base my-3">Total Capacity: {data.capacity}</h1>
             <h1 className="font-medium text-base">Total Price: {data.pricePerSlot}$</h1>
             </div>
-          <Link to={`${data._id}`} className="inline-block mt-4 w-full"><Button className="w-full font-semibold block " text="Details"/></Link>
+          <Link to={`/meeting-rooms/${data._id}`} className="inline-block mt-4 w-full"><Button className="w-full font-semibold block " text="Details"/></Link>
         </div>
     );
 };

@@ -1,12 +1,10 @@
 
 import CustomerBenifit from "../../Layouts/CustomerBenifit/CustomerBenifit";
-import Customize from "../../Layouts/Customize/Customize";
 import Hero from "../../Layouts/Hero/Hero";
+import HowItsWork from "../../Layouts/HowItsWork/HowItsWork";
 import LatestItems from "../../Layouts/LatestItems/LatestItems";
-import Advertisement from "../../Layouts/ServiceAdvertisement/Advertisement";
-import TopBrands from "../../Layouts/TopBrands/TopBrands";
 import UserReview from "../../Layouts/UserReview/UserReview";
-import WhyMk from "../../Layouts/WhyMk/WhyMk";
+import WhychoseUs from "../../Layouts/WhyChoseUs/WhychoseUs";
 
 const Home = () => {
   return (
@@ -15,10 +13,9 @@ const Home = () => {
       {/* <Advertisement/> */}
       <CustomerBenifit/>
       <LatestItems/>
-      <TopBrands/>
-      <Customize/>
+      <WhychoseUs/>
+      <HowItsWork/>
       <UserReview/>
-      <WhyMk/>
     </>
   );
 };

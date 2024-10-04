@@ -34,9 +34,9 @@ const MybookingRoot = () => {
 
 
   return (
-    <div className="flex gap-x-9 items-start w-full box-border pl-14 pt-16 justify-start">
+    <div className="flex flex-col lg:flex-row lg:gap-x-9 items-start w-full box-border lg:pl-14 lg:pt-16 justify-start">
       <MyBookingAsideNav />
-      <div className=" lg:w-[1300px]">
+      <div className="w-full lg:w-[1300px] px-4 lg:px-0">
       <Outlet />
       </div>
     </div>

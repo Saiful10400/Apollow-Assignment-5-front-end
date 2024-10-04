@@ -5,7 +5,7 @@ const ReviewCard = ({ img, ratings, testimonials, user }) => {
   return (
     <div className="bg-[#f9f9f9] shadow-lg rounded-lg p-5">
       <img
-        className="w-[70px] h-[70px] rounded-full object-cover"
+        className="w-[70px] h-[70px] review-card-user-profile rounded-full object-cover"
         src={img}
         alt=""
       />

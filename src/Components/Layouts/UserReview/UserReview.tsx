@@ -20,7 +20,7 @@ export default function UserReview() {
   return (
     <CenterAlign>
       
-      <>
+      <div className="px-4 lg:px-0">
       <Tittle text="Customer Reviews" />
         <Swiper
         data-aos="fade-down"
@@ -70,7 +70,7 @@ export default function UserReview() {
             </SwiperSlide>
           ))}
         </Swiper>
-      </>
+      </div>
     </CenterAlign>
   );
 }

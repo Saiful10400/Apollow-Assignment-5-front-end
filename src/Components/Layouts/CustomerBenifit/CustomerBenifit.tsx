@@ -8,7 +8,7 @@ const CustomerBenifit = () => {
   return (
     <CenterAlign>
       <Tittle text="Our Uniqueness"/>
-      <div className="flex flex-col lg:flex-row px-4 gap-4 mt-5">
+      <div data-aos="fade-up" className="flex flex-col lg:flex-row px-4 gap-4 mt-5">
         {getCustomerBenifitDemoData()?.map((item, idx) => (
           <CustomerBenifitCard key={idx} data={item} />
         ))}

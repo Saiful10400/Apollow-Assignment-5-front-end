@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   useConfirmABookingMutation,
   useDeleteABookingMutation,
@@ -6,6 +6,8 @@ import {
 } from "../../../../../Redux/api/api";
 import Button from "../../../../Ui/Button";
 import Swal from "sweetalert2";
+import Pagination from "../../../../Layouts/Pagination/Pagination";
+import Loading from "../../../../SharedComponent/Loading";
 
 const BookingManage = () => {
   const { data, isLoading } = useGetAllBookingForAdminQuery(null);
@@ -44,10 +46,13 @@ const BookingManage = () => {
     }
   }, [updateData]);
 
+  // table management.
+  const [tableData, setTableData] = useState([]);
+
   return (
     <>
-      <div className="flex justify-between items-center">
-        <h1 className="text-4xl font-bold">Booking Management</h1>
+      <div className="flex justify-between items-center mt-4 px-3 lg:px-0 lg:mt-0">
+        <h1 className="lg:text-4xl text-xl font-bold">Booking Management</h1>
       </div>
       <div className="overflow-x-auto mt-5">
         <table className="table">
@@ -66,7 +71,7 @@ const BookingManage = () => {
           </thead>
           <tbody className="lg:text-base">
             {!isLoading &&
-              data?.data.map((item, idx) => {
+              tableData?.data?.map((item, idx) => {
                 return (
                   <tr
                     key={idx}
@@ -74,7 +79,7 @@ const BookingManage = () => {
                       idx % 2 !== 0 ? "bg-[#ffffff]" : "bg-[#f5f0f09c]"
                     }`}
                   >
-                    <td className="font-semibold text-center">{idx + 1}</td>
+                    <td className="font-semibold text-center">{idx + 1 + 10 * (tableData.index - 1)}</td>
 
                     <td className="font-semibold text-center">
                       {item.slot.room.name}
@@ -124,7 +129,9 @@ const BookingManage = () => {
               })}
           </tbody>
         </table>
-        {/* {isLoading && <Loading />}
+        {data?.data && <Pagination setterFung={setTableData} data={data?.data} />}
+        {/* {isLoading && <Loading />} */}
+        {/* 
         {data?.data?.length === 0 && (
           <div className="to-center w-full text-lg mt-4">
             No Item Available!
