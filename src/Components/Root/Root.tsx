@@ -11,6 +11,7 @@ import { getToken } from "../../Utils/getToken";
 import { useAppDispatch } from "../../Redux/feathcer/hoocks";
 import { setLoading, setUser } from "../../Redux/feathcer/AuthSlice";
 import axios from "axios";
+import { IoIosArrowUp } from "react-icons/io";
 const Root = () => {
   AOS.init();
 
@@ -34,7 +35,37 @@ const Root = () => {
     })
   }, []);
 
+  const scrollTopHandle=()=>{
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
 
+
+
+  const [isAtTop, setIsAtTop] = useState(true);
+
+  const handleScroll = () => {
+    if (window.scrollY === 0) {
+      setIsAtTop(true);
+    } else {
+      setIsAtTop(false);
+    }
+  };
+
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+
+console.log(window.scrollY)
   return (
     <div className="">
       <div className="sticky top-0 z-50">
@@ -44,6 +75,11 @@ const Root = () => {
       <div className="relative z-10">
         <Outlet />
         <Footer />
+        {
+          !isAtTop&&<button onClick={scrollTopHandle} className="fixed text-4xl text-white bg-gray-600 bottom-3 right-4 rounded-full p-2">
+          <IoIosArrowUp />
+          </button>
+        }
       </div>
     </div>
   );
