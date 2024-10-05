@@ -81,7 +81,7 @@ const routes = createBrowserRouter([
   },
   {
     path:"/user/my-bookings",
-    element:<MybookingRoot/>,
+    element:<PrivateRoute role={["user","admin"]}><MybookingRoot/></PrivateRoute>,
     children:[
       {
         path:"",

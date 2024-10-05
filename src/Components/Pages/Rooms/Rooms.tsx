@@ -64,7 +64,7 @@ const Rooms = () => {
     setQueryData(queryItems);
     setRangeShalow(queryItems);
 
-    update({ maxPrice: 0, minPrice: 0, sortBy: "" });
+    update({ minCapacity: 0, maxCapacity: 0,maxPrice: 0, minPrice: 0, sortBy: "" });
   };
 
   // debaunch.
@@ -116,7 +116,7 @@ const Rooms = () => {
     });
 
     setQueryData(queryItem);
-    update({ minPrice: 0, maxCapacity: 0, sortBy: "" });
+    update({ minCapacity: 0, maxCapacity: 0, sortBy: "" });
   };
 
   // range handle.(capacity)

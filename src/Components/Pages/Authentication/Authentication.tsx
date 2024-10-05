@@ -88,7 +88,7 @@ const Authentication = () => {
 
 
 
-axios.get("http://localhost:8000/api/auth/getCurrentUser", {
+axios.get("https://apollow-assignment-5-back-end.vercel.app/api/auth/getCurrentUser", {
   headers: {
     authorization: getToken() ,
   }

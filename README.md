@@ -1,39 +1,65 @@
-# Mecha
+# Acowork
 
-**Live URL**: [https://apollow-assignment-4-front-end.vercel.app](https://apollow-assignment-4-front-end.vercel.app)
+**Live URL**: [https://apollow-assignment-5-front-end.vercel.app/](https://apollow-assignment-5-front-end.vercel.app)
 
 ## Overview
 
-Mecha is an e-commerce platform for keyboard enthusiasts, allowing users to add, update, and delete keyboard details, as well as place orders.
+Acowork is a co-working space platform that offers seamless room booking experiences, allowing users to check real-time availability, schedule meetings, and manage their reservations effortlessly.
 
 ## Features
 
-- Add, update, and delete keyboard details
-- Place orders for keyboards
-- User-friendly interface with responsive design
+- **Real-time Availability:** Instantly check room availability and secure your space without delays.
+- **Instant Booking Confirmation:** Get immediate confirmation of your booking to avoid any last-minute hassles.
+- **Flexible Scheduling:** Book rooms by the hour, day, or for extended periods, tailored to your needs.
+- **Manage Bookings:** Easily view, update, reschedule, or cancel your bookings from a user-friendly dashboard.
+- **Secure Payments:** Enjoy safe and seamless transactions with multiple payment methods.
+- **Detailed Room Information:** View room features, amenities, and pricing before making a booking.
+- **24/7 Support:** Our customer service team is available around the clock to assist with any issues or questions.
 
-## Technologies
+## Technology Used
 
-- **Frontend**: React, Redux, Vite, Chakra UI, Tailwind CSS, TypeScript
-- **Backend**: Node.js (assumed), Express (assumed)
-- **Tools**: Git, GitHub, ESLint, Postman
-
-## Setup
+- **Frontend:** React, TypeScript, Vite, MUI, DaisyUI
+- **Backend:** Node.js, Express, MongoDB (Mongoose)
+- **State Management:** Redux, RTK Query
+- **Deployment:** [Vercel]
+  
+## How to Run the Project Locally
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/mecha.git
-   
-# Usage
 
-Users can browse keyboard listings, add new products, update or delete existing keyboard details, and place orders.
+    ```bash
+    git clone https://github.com/Saiful10400/Apollow-Assignment-5-front-end
+    ```
 
-## Contributing
+2. Navigate to the project directory:
 
-Contributions are welcome! To contribute:
+    ```bash
+    cd your-repo-name
+    ```
+
+3. Install dependencies:
+
+    ```bash
+    npm install
+    ```
+
+4. Start the development server:
+
+    ```bash
+    npm run dev
+    ```
+
+5. Open your browser and visit:
+
+    ```bash
+    http://localhost:5173
+    ```
+
+## How to Contribute
 
 1. Fork the repository.
-2. Create a new branch:
-   ```bash
-   git checkout -b feature-name
+2. Create a new feature branch (`git checkout -b feature-name`).
+3. Commit your changes (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature-name`).
+5. Create a pull request.
 
