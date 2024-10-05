@@ -6,20 +6,19 @@ import { FaLinkedin } from "react-icons/fa";
 import "./style.css";
 const AboutUs = () => {
   return (
-    <div className="min-h-[70vh]">
+    <div className="min-h-[70vh] lg:px-0 px-3">
       <CenterAlign>
         <div>
           <div className=" min-h-[15vh] to-center">
-            <h1 className="text-5xl text-center font-normal">
+            <h1 data-aos="zoom-in-down" className="text-3xl lg:text-5xl text-center font-normal">
               To get to know us,
-           
               come and meet us!
             </h1>
           </div>
           <div className="flex flex-col lg:flex-row items-center gap-10 mt-24">
-            <img className="rounded-l-3xl" src={team} alt="team imge" />
-            <div>
-              <h1 className="text-5xl mb-5">Our Mission</h1>
+            <img data-aos="fade-right" className="rounded-l-3xl" src={team} alt="team imge" />
+            <div data-aos="fade-left">
+              <h1 className="text-3xl lg:text-5xl mb-5">Our Mission</h1>
               <p className="text-lg font-medium">
                 At <span className="font-bold">Acowork</span>, we are committed
                 to creating an inspiring and flexible work environment where
@@ -37,12 +36,12 @@ const AboutUs = () => {
           </div>
 
           <div>
-            <h1 className="text-5xl mt-28 mb-16 text-center">Meet the Team</h1>
+            <h1 className="text-3xl lg:text-5xl mt-28 mb-16 text-center">Meet the Team</h1>
 
             <div className="grid grid-cols-1 gap-5 lg:grid-cols-4">
               {getAllTeamMember()?.map((item, idx) => {
                 return (
-                  <div
+                  <div data-aos="zoom-in"
                     key={idx}
                     className="relative bg-container overflow-hidden w-full h-[500px]"
                   >
@@ -79,7 +78,7 @@ const AboutUs = () => {
             </div>
 
             <div>
-              <h1 className="text-5xl mt-28 mb-11 text-center">
+              <h1 className="text-3xl lg:text-5xl mt-28 mb-11 text-center">
                 Our Story: Background and Evolution
               </h1>
               <p className="text-center font-normal text-lg">
@@ -89,7 +88,7 @@ const AboutUs = () => {
                 serves freelancers, startups, and established businesses alike.
               </p>
               <p className="font-normal text-lg">
-                <h1 className="font-semibold text-2xl mt-6 mb-4">Background:</h1>
+                <h1 className="font-semibold text-2xl mt-6 mb-3">Background:</h1>
                 Founded in 2018, we started as a small, local co-working space
                 catering to a handful of creative professionals. The idea was to
                 foster a community where people could come together, share
@@ -98,24 +97,24 @@ const AboutUs = () => {
                 we.
               </p>
               <h1 className="text-2xl font-semibold mt-4">Evolution:</h1>
-              <div className="grid grid-cols-3 gap-4 mt-4">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">
 
 
-                <div className="shadow-lg text-center bg-gray-300 p-3 rounded-lg">
+                <div data-aos="fade-up" className="shadow-lg text-center bg-gray-200 p-3 rounded-lg">
                   <h1 className="text-xl font-bold">
                     1<sup>st</sup> Year
                   </h1>
                   <p className="text-lg font-normal mt-4 px-3">{getEvalution().year1}</p>
                 </div>
                 
-                <div className="shadow-lg text-center bg-gray-300 p-3 rounded-lg">
+                <div data-aos="fade-up" className="shadow-lg text-center bg-gray-200 p-3 rounded-lg">
                   <h1 className="text-xl font-bold">
                     2<sup>nd</sup> Year
                   </h1>
                   <p className="text-lg font-normal mt-4 px-3">{getEvalution().year2}</p>
                 </div>
 
-                <div className="shadow-lg text-center bg-gray-300 p-3 rounded-lg">
+                <div data-aos="fade-up" className="shadow-lg text-center bg-gray-200 p-3 rounded-lg">
                   <h1 className="text-xl font-bold">
                     3<sup>rd</sup> Year
                   </h1>

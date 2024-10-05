@@ -98,7 +98,7 @@ const BookingProcess = () => {
                 onSubmit={formSubmitHandle}
                 className="grid grid-cols-1 mt-3 lg:grid-cols-2 gap-7 lg:gap-0"
               >
-                <div>
+                <div data-aos="fade-right">
                   <h1 className="text-2xl font-semibold">Booking Schedule:</h1>
                   <div className="flex flex-col lg:flex-row items-center lg:items-start lg:gap-4 mt-4">
                     <div>
@@ -137,7 +137,7 @@ const BookingProcess = () => {
                   </div>
                 </div>
 
-                <div>
+                <div data-aos="fade-left">
                   <h1 className="text-2xl font-semibold">User Information:</h1>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
                     <InputField

@@ -16,6 +16,8 @@ import Payment from "../Components/Pages/Payment/Payment";
 import MybookingRoot from "../Components/Pages/MyBookings/MybookingRoot";
 import MyBooking from "../Components/Pages/MyBookings/SubBranch/MyBooking";
 import Error from "../Components/Pages/Error/Error";
+import { ChakraProvider } from "@chakra-ui/react";
+import PrivateRoute from "../Utils/PrivateRoute";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -28,11 +30,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/meeting-rooms",
-        element: <Rooms />,
+        element: <ChakraProvider><Rooms /></ChakraProvider>,
       },
       {
         path: "/meeting-rooms/:id",
-        element: <SingleRoom />,
+        element:<PrivateRoute role={["admin","user"]}><SingleRoom /></PrivateRoute>,
       },
       {
         path: "/meeting-rooms/booking/:id",
@@ -60,7 +62,7 @@ const routes = createBrowserRouter([
   },
   {
     path: "/admin/dashboard",
-    element: <AdminDashboard />,
+    element: <PrivateRoute role={["admin"]}><AdminDashboard /></PrivateRoute>,
     children: [
       {
         path: "room",

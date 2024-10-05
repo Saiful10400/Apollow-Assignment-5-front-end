@@ -21,7 +21,7 @@ export default function UserReview() {
     <CenterAlign>
       
       <div className="px-4 lg:px-0">
-      <Tittle text="Customer Reviews" />
+      <Tittle text="Customer Testimonials" />
         <Swiper
         data-aos="fade-down"
           centeredSlides={true}

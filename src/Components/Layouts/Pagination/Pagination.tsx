@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import getNumberArrayFromNumber from '../../../Utils/getNumberArrayFromNumber';
 import Button from '../../Ui/Button';
 
-const Pagination = ({data,setterFung}) => {
+const Pagination = ({data,setterFung,perPage=10}) => {
 
-const totalPage=Math.ceil(data.length/10)
+const totalPage=Math.ceil(data.length/perPage)
 const paginaitonButtonsNumber=getNumberArrayFromNumber(totalPage)
 
 
@@ -16,7 +16,7 @@ const buttonOnclick=(btnIndex)=>{
 setBtnIndex(btnIndex)
 
 
-const SplitedData={data:data?.slice((btnIndex-1)*10,(btnIndex*10)),index:btnIndex}
+const SplitedData={data:data?.slice((btnIndex-1)*perPage,(btnIndex*perPage)),index:btnIndex}
 
 setterFung(SplitedData)
 
@@ -24,12 +24,12 @@ setterFung(SplitedData)
 
 // initial situation handle.
 useEffect(()=>{
-setterFung({data:data?.slice((btnIndex-1)*10,(btnIndex*10)),index:btnIndex})
+setterFung({data:data?.slice((btnIndex-1)*perPage,(btnIndex*perPage)),index:btnIndex})
 setBtnIndex(btnIndex)
 },[setterFung,data])
 
 
-if(data.length<=10) return
+if(data.length<=perPage) return
     return (
         <div className='to-center gap-3 mb-6 mt-4'>
             {

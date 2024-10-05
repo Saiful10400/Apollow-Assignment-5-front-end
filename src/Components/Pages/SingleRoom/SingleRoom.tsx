@@ -21,10 +21,14 @@ const SingleRoom = () => {
     <CenterAlign>
       <div className="px-4 lg:px-0">
         <div className="">
-          <SingleRoomCarosel images={roomData.roomImages} />
+          <SingleRoomCarosel data-aos="fade-down" images={roomData.roomImages} />
         </div>
+
+
         <div className="flex flex-col lg:flex-row gap-5 mt-5">
-          <div className="lg:w-[70%] ">
+
+
+          <div data-aos="fade-right" className="lg:w-[70%] ">
             <h1 className="flex flex-col lg:flex-row justify-between  lg:items-center items-start">
               <span className="text-3xl font-semibold">{roomData.name}</span>{" "}
               <span className="text-lg font-normal">
@@ -58,7 +62,9 @@ const SingleRoom = () => {
               </h1>
             </div>
           </div>
-          <div className="lg:w-[30%]">
+
+          
+          <div data-aos="fade-left" className="lg:w-[30%]">
             <Link to={`/meeting-rooms/booking/${id}`}>
               <Button
                 className="text-xl font-normal block w-[70%] mx-auto"
@@ -66,6 +72,8 @@ const SingleRoom = () => {
               />
             </Link>
           </div>
+
+
         </div>
       </div>
     </CenterAlign>

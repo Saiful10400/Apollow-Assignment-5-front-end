@@ -10,28 +10,30 @@ import { useGetLoggedInUserQuery } from "../../Redux/api/api";
 import { getToken } from "../../Utils/getToken";
 import { useAppDispatch } from "../../Redux/feathcer/hoocks";
 import { setLoading, setUser } from "../../Redux/feathcer/AuthSlice";
+import axios from "axios";
 const Root = () => {
   AOS.init();
 
-  const [shouldCall, setShouldCall] = useState(false);
+
   // getting login user details, if the user is logged in.
-  const { data } = useGetLoggedInUserQuery(undefined, { skip: !shouldCall });
+ 
 
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (getToken()) {
-      setShouldCall(true);
-    } else {
-      dispatch(setLoading(false));
-    }
-  }, [dispatch]);
+
 
   useEffect(() => {
-    if (data) {
-      dispatch(setUser(data.data));
-    }
-  }, [data, dispatch]);
+    axios.get("http://localhost:8000/api/auth/getCurrentUser", {
+      headers: {
+        authorization: getToken() ,
+      }
+    }).then(res=>{
+      console.log("from root.")
+      dispatch(setUser(res.data.data))
+ 
+    })
+  }, []);
+
 
   return (
     <div className="">

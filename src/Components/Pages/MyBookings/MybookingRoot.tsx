@@ -10,25 +10,25 @@ import MyBookingAsideNav from "./SubBranch/Asidenav/MyBookingAsideNav";
 
 const MybookingRoot = () => {
 
-    const [shouldCall, setShouldCall] = useState(false);
-    // getting login user details, if the user is logged in.
-    const { data } = useGetLoggedInUserQuery(undefined, { skip: !shouldCall });
+    // const [shouldCall, setShouldCall] = useState(false);
+    // // getting login user details, if the user is logged in.
+    // const { data } = useGetLoggedInUserQuery(undefined, { skip: !shouldCall });
   
-    const dispatch = useAppDispatch();
+    // const dispatch = useAppDispatch();
   
-    useEffect(() => {
-      if (getToken()) {
-        setShouldCall(true);
-      } else {
-        dispatch(setLoading(false));
-      }
-    }, [dispatch]);
+    // useEffect(() => {
+    //   if (getToken()) {
+    //     setShouldCall(true);
+    //   } else {
+    //     dispatch(setLoading(false));
+    //   }
+    // }, [dispatch]);
   
-    useEffect(() => {
-      if (data) {
-        dispatch(setUser(data.data));
-      }
-    }, [data, dispatch]);
+    // useEffect(() => {
+    //   if (data) {
+    //     dispatch(setUser(data.data));
+    //   }
+    // }, [data, dispatch]);
 
 
 

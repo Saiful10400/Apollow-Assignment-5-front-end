@@ -40,6 +40,7 @@ export const baseApi = createApi({
 
       getLoggedInUser: builder.query({
         query: () => {
+          console.log("api is calling.")
           return {
             url: `/auth/getCurrentUser`,
             method: "GET",

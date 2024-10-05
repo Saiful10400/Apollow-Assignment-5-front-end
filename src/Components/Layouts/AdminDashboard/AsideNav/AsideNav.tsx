@@ -23,7 +23,7 @@ const AsideNav = () => {
   );
 
   const { loggedInUser } = useAppSelector((state) => state.authStore);
-
+console.log(loggedInUser,"from admin")
     // mobile view handle.
 
   // mobile view.
@@ -66,7 +66,7 @@ const AsideNav = () => {
         {/* drop down. */}
         <ul
           className={`absolute flex-col flex text-white w-full mt-20  pt-4 pb-2 bg-black duration-300 pl-4 left-0 ${
-            showDropDown ? "-bottom-[173%]" : "bottom-[185%]"
+            showDropDown ? "-bottom-[216%]" : "bottom-[185%]"
           } -z-10`}
         >
           {routes}

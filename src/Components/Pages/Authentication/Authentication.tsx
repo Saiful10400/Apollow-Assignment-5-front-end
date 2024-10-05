@@ -15,6 +15,8 @@ import {
 } from "../../../Redux/api/api";
 import { useAppDispatch } from "../../../Redux/feathcer/hoocks";
 import { setUser } from "../../../Redux/feathcer/AuthSlice";
+import axios from "axios"
+import { getToken } from "../../../Utils/getToken";
 const Authentication = () => {
   const params = useParams().id;
   const move = useNavigate();
@@ -57,18 +59,17 @@ const Authentication = () => {
     { error: loginError, isLoading: loginLoading, data: loginData },
   ] = useLoginMutation();
 
-  // panitrate current login user api.
-  const [shouldCall, setShouldCall] = useState(false);
-  const { data } = useGetLoggedInUserQuery(undefined, { skip: !shouldCall });
+
 
   
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    if (data?.data) {
-      dispatch(setUser(data?.data));
-      move("/")
-    }
-  }, [data, dispatch]);
+
+
+
+
+
+
+
 
   //form submit handle.
   const formSubmitHandle = (e) => {
@@ -76,14 +77,39 @@ const Authentication = () => {
     const form = e.target;
 
     if (params === "login") {
+      
       const email = form.email.value;
       const password = form.password.value;
       login({ email, password }).then((res) => {
+        if(res?.error?.status) return
+        dispatch(setUser(null))
         localStorage.setItem("token", res.data.token);
+       
+
+
+
+axios.get("http://localhost:8000/api/auth/getCurrentUser", {
+  headers: {
+    authorization: getToken() ,
+  }
+}).then(res=>{
+  dispatch(setUser(res.data.data))
+   move("/")
+})
+
+
+
+
+
+
         form.reset();
-        setShouldCall(true);
-      });
-    } else if (params === "register") {
+      }).catch(err=>console.log(err,"error."))
+    } 
+    
+    
+    
+    
+    else if (params === "register") {
       if (!profileImage) return;
       const name = form.name.value;
       const email = form.email.value;
@@ -134,6 +160,7 @@ const Authentication = () => {
 
   return (
     <div className="authContainer lg:min-h-[80vh] to-center">
+     
       <div className="bg-white rounded-lg py-5 w-full lg:w-auto lg:min-w-[500px] lg:min-h-[500px]">
         <div className="to-center">
           {" "}

@@ -1,5 +1,6 @@
 import loadingGif from "../../../public/loading.gif";
 const Loading = () => {
+
   return (
     <div className=" min-h-[60vh]   to-center">
       <img
