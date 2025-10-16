@@ -4,7 +4,7 @@
  
 ## Overview
 
-### Acowork ### is a co-working space platform that offers seamless room booking experiences, allowing users to check real-time availability, schedule meetings, and manage their reservations effortlessly.
+### Acowork is a co-working space platform that offers seamless room booking experiences, allowing users to check real-time availability, schedule meetings, and manage their reservations effortlessly.
 
 ## Features
 
